@@ -23,6 +23,10 @@ ul li a:hover {
   color: var(--dominante);
 }
 
+a {
+  font-size: 1.5rem;
+}
+
 .align-right {
   margin-left: auto;
 }

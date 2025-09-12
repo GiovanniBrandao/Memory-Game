@@ -1,14 +1,3 @@
-:root {
-    --primary-color: #28a745;
-    --primary-hover-color: #218838;
-    --background-color: #f0f2f5;
-    --form-background-color: #ffffff;
-    --text-color: #333333;
-    --input-border-color: #dddddd;
-    --box-shadow-color: rgba(0, 0, 0, 0.1);
-    --link-color: #007BFF;
-}
-
 .profile-container {
     background-color: var(--form-background-color);
     padding: 2.5rem;
@@ -41,7 +30,7 @@
 .input-group input {
     width: 100%;
     padding: 0.8rem;
-    border: 1px solid var(--input-border-color);
+    border: 1px solid var(--dominante);
     border-radius: 4px;
     font-size: 1rem;
     box-sizing: border-box;
@@ -50,7 +39,7 @@
 .save-button {
     width: 100%;
     padding: 0.9rem;
-    background-color: var(--primary-color);
+    background-color: var(--dominante);
     color: white;
     border: none;
     border-radius: 4px;
@@ -61,14 +50,15 @@
 }
  
 .save-button:hover {
-    background-color: var(--primary-hover-color);
+    background-color: var(--base);
+    color: var(--dominante);
 }
 
 .back-link {
     display: block;
     text-align: center;
     margin-top: 1.5rem;
-    color: var(--link-color);
+    color: var(--dominante);
     text-decoration: none;
     font-weight: 600;
 }

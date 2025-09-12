@@ -3,16 +3,16 @@
   --dominante: #D9A299;
   --secundaria: #F0E4D3;
   --terciaria: #DCC5B2;
+  --text-color: #444;
+
+  --form-background-color: #ffffff;
+  --box-shadow-color: rgba(0, 0, 0, 0.1);
 }
 
 body {
   background-color: var(--base);
-  color: #444;
-  font-family: "Comfortaa", sans-serif;
-  font-optical-sizing: auto;
-  font-size: larger;
-  font-weight: 400;
-  font-style: normal;
+  color: var(--text-color);
+  font-family: Arial;
   padding: 0;
 }
 
@@ -39,6 +39,7 @@ footer {
 }
 
 p {
+  font-size: 1rem;
   margin: 0;
 }
 
