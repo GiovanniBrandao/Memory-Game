@@ -1,0 +1,74 @@
+:root {
+    --primary-color: #28a745;
+    --primary-hover-color: #218838;
+    --background-color: #f0f2f5;
+    --form-background-color: #ffffff;
+    --text-color: #333333;
+    --input-border-color: #dddddd;
+    --box-shadow-color: rgba(0, 0, 0, 0.1);
+    --link-color: #007BFF;
+}
+
+.profile-container {
+    background-color: var(--form-background-color);
+    padding: 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px var(--box-shadow-color);
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+}
+
+.profile-container h1 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    text-align: center;
+    color: var(--text-color);
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--input-border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.save-button {
+    width: 100%;
+    padding: 0.9rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+ 
+.save-button:hover {
+    background-color: var(--primary-hover-color);
+}
+
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 1.5rem;
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: 600;
+}

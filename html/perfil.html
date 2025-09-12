@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/main.css">
+    <link rel="stylesheet" href="../CSS/navbar.css">
+    <link rel="stylesheet" href="../CSS/perfil.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+    <title>Perfil</title>
+</head>
+<body>
+    
+    <nav aria-label="Navegação principal">
+        <ul>
+            <li><a href="jogo.html">Jogo</a></li>
+            <li><a href="ranque.html">Ranque global</a></li>
+            <li><a href="perfil.html">Perfil</a></li>
+            <li class="align-right"><a href="index.html">Sair</a></li>
+        </ul>
+    </nav>
+
+    <main class="profile-container centralizarHorizontalmente">
+        <h1>Editar Informações</h1>
+        <form id="profile-form">
+            <div class="input-group">
+                <label for="name">Nome Completo</label>
+                <input type="text" id="name" name="name" placeholder="Usuário de Exemplo">
+            </div>
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="usuario@email.com">
+            </div>
+            <div class="input-group">
+                <label for="phone">Telefone</label>
+                <input type="tel" id="phone" name="phone" placeholder="(XX) XXXXX-XXXX">
+            </div>
+            <button type="submit" class="save-button">Salvar Alterações</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>© 2025 Universidade Estadual de Campinas - Campus Limeira</p>
+    </footer>
+
+    <script>
+        const form = document.getElementById('profile-form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Dados salvos com sucesso! (Demonstração)');
+        });
+    </script>
+</body>
+</html>

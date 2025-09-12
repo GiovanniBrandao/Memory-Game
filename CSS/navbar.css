@@ -1,0 +1,28 @@
+/* =======================================
+   Menu de Navegação
+   ======================================= */
+ul {
+  background-color: var(--dominante);
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul li a {
+  color: white;
+  display: block;
+  padding: 14px 16px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+}
+
+ul li a:hover {
+  background-color: var(--base);
+  color: var(--dominante);
+}
+
+.align-right {
+  margin-left: auto;
+}

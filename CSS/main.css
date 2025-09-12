@@ -1,0 +1,50 @@
+:root {
+  --base: #FAF7F3;
+  --dominante: #D9A299;
+  --secundaria: #F0E4D3;
+  --terciaria: #DCC5B2;
+}
+
+body {
+  background-color: var(--base);
+  color: #444;
+  font-family: "Comfortaa", sans-serif;
+  font-optical-sizing: auto;
+  font-size: larger;
+  font-weight: 400;
+  font-style: normal;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+main, body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  margin: 3rem;
+}
+
+footer {
+  background-color: var(--terciaria);
+  color: var(--base);
+  padding: 1rem;
+  text-align: center;
+}
+
+p {
+  margin: 0;
+}
+
+.centralizarHorizontalmente {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: justify;
+  width: 50%;
+}
