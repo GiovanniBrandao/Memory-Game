@@ -1,0 +1,36 @@
+main {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    height: 100%;
+
+}
+
+.login-central {
+    align-items: center;
+    background-color: var(--form-background-color);
+    padding: 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px var(--box-shadow-color);
+    width: 100%;
+    max-width: 650px;
+    box-sizing: border-box;
+}
+
+.login-central a{
+    text-align: center;
+}
+
+.formulario form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0rem 4rem 4rem 4rem;
+  
+
+}
+
+.formulario form input {
+    height: 25px;
+   
+}
