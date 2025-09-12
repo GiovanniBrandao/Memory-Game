@@ -1,13 +1,21 @@
+/* =======================================
+  Cores
+  ======================================= */
+
 :root {
-  --base: #FAF7F3;
-  --dominante: #D9A299;
-  --secundaria: #F0E4D3;
-  --terciaria: #DCC5B2;
+  --base: #F7F4EA;
+  --dominante: #A8BBA3;
+  --secundaria: #EBD9D1;
+  --terciaria: #B87C4C;
   --text-color: #444;
 
   --form-background-color: #ffffff;
   --box-shadow-color: rgba(0, 0, 0, 0.1);
 }
+
+/* =======================================
+  Padrões gerais
+  ======================================= */
 
 body {
   background-color: var(--base);
@@ -43,9 +51,60 @@ p {
   margin: 0;
 }
 
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: var();
+}
+
+input {
+  padding: 1rem;
+  border: 1px solid var(--text-color);
+  border-radius: 10px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+input:focus {
+  border-color: var(--dominante);
+  outline: none;
+}
+
+/* =======================================
+  Helpers
+  ======================================= */
+
 .centralizarHorizontalmente {
   margin-left: auto;
   margin-right: auto;
   text-align: justify;
   width: 50%;
+}
+
+.card {
+  background-color: var(--form-background-color);
+  padding: 2.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px var(--box-shadow-color);
+  box-sizing: border-box;
+}
+
+.btnPrincipal {
+  padding: 1rem;
+  background-color: var(--dominante);
+  width: fit-content;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btnPrincipal:hover {
+  background-color: var(--base);
+  color: var(--dominante);
+  border: 2px solid var(--dominante);
 }

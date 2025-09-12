@@ -1,14 +1,8 @@
-.profile-container {
-    background-color: var(--form-background-color);
-    padding: 2.5rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px var(--box-shadow-color);
-    width: 100%;
-    max-width: 500px;
-    box-sizing: border-box;
-}
+/* =======================================
+  Tela de perfil
+  ======================================= */
 
-.profile-container h1 {
+.card h1 {
     margin-top: 0;
     margin-bottom: 1.5rem;
     font-size: 2rem;
@@ -20,45 +14,10 @@
     margin-bottom: 1.5rem;
 }
 
-.input-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-    color: var(--text-color);
-}
-
-.input-group input {
+.save-button, .input-group input {
     width: 100%;
-    padding: 0.8rem;
-    border: 1px solid var(--dominante);
-    border-radius: 4px;
-    font-size: 1rem;
-    box-sizing: border-box;
 }
 
-.save-button {
-    width: 100%;
-    padding: 0.9rem;
-    background-color: var(--dominante);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
- 
-.save-button:hover {
-    background-color: var(--base);
-    color: var(--dominante);
-}
-
-.back-link {
-    display: block;
-    text-align: center;
-    margin-top: 1.5rem;
-    color: var(--dominante);
-    text-decoration: none;
-    font-weight: 600;
+.profile-width {
+    width: 30%;
 }
