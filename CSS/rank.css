@@ -1,0 +1,25 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    background: var(--base);
+}
+
+th, td {
+    padding: 12px 8px;
+    text-align: center;
+}
+
+th {
+    background-color: var(--dominante);
+    color: #fff;
+}
+
+tr:nth-child(even) {
+    background-color: var(--quaternaria);
+}
+
+tr:hover {
+    border: 2px solid var(--dominante);
+    cursor: pointer;
+}

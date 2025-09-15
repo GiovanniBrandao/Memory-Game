@@ -1,10 +1,7 @@
-main {
-    display: flex;
-    align-items: center;
-    flex: 1;
-    height: 100%;
 
-}
+/* =======================================
+  Tela de login
+  ======================================= */
 
 .login-central {
     align-items: center;
@@ -17,7 +14,7 @@ main {
     box-sizing: border-box;
 }
 
-.login-central a{
+.login-central a {
     text-align: center;
 }
 
@@ -26,11 +23,8 @@ main {
     flex-direction: column;
     gap: 10px;
     padding: 0rem 4rem 4rem 4rem;
-  
-
 }
 
 .formulario form input {
     height: 25px;
-   
 }

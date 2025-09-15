@@ -7,6 +7,7 @@
   --dominante: #A8BBA3;
   --secundaria: #EBD9D1;
   --terciaria: #B87C4C;
+  --quaternaria: #a8bba344;
   --text-color: #444;
 
   --form-background-color: #ffffff;
@@ -36,7 +37,7 @@ main, body {
 
 main {
   flex: 1;
-  margin: 3rem;
+  margin: 2rem;
 }
 
 footer {
@@ -74,12 +75,10 @@ input:focus {
 /* =======================================
   Helpers
   ======================================= */
-
-.centralizarHorizontalmente {
-  margin-left: auto;
-  margin-right: auto;
-  text-align: justify;
-  width: 50%;
+.centralizar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .card {
@@ -95,7 +94,7 @@ input:focus {
   background-color: var(--dominante);
   width: fit-content;
   color: white;
-  border: none;
+  border: 2px solid var(--dominante);
   border-radius: 10px;
   font-size: 1.1rem;
   font-weight: bold;
@@ -106,5 +105,4 @@ input:focus {
 .btnPrincipal:hover {
   background-color: var(--base);
   color: var(--dominante);
-  border: 2px solid var(--dominante);
 }

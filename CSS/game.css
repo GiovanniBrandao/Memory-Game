@@ -1,3 +1,31 @@
 /* =======================================
   Tela de jogo
   ======================================= */
+
+
+img {
+  width: 170px;
+  height: 170px;
+  cursor: pointer;
+}
+
+h1 {
+  margin: 0;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: auto 1fr; 
+}
+
+.cabecalho {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.tabuleiro {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;   
+}
