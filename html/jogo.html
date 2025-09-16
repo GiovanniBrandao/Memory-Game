@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/main.css">
+    <link rel="stylesheet" href="../CSS/helpers.css">
     <link rel="stylesheet" href="../CSS/navbar.css">
     <link rel="stylesheet" href="../CSS/game.css">
     <title>Jogo da memória</title>
@@ -24,8 +25,10 @@
     <main class="container">
         <section class="cabecalho">
             <h1>00:00:00</h1>
-            <h1>Jogadas: 0</h1>
-            <button class="btnPrincipal">Configurações</button>
+            <h2>Jogadas: 0</h2>
+            <button class="botao-principal">Configurações</button>
+            <button class="botao-principal" id="trapaça">Exibir peças ocultas: OFF</button>
+            <button class="botao-principal">Desistir do jogo</button>
         </section>
 
         <section class="centralizar">
@@ -48,6 +51,25 @@
                 <img class="card" src="../Resources/Images/gota.svg" alt="">
             </div>
         </section>
+
+        <dialog open>
+            <section class="modal-conteudo">
+                <span class="botao-fechar">&times;</span>
+                <h2>Configurações</h2>
+                <dl class="grid-itens">
+                    <div class="item">
+                        <dt>Modo de Jogo:</dt>
+                        <dd>Normal</dd>
+                    </div>
+                    <div class="item">
+                        <dt>Tabuleiro:</dt>
+                        <dd>2x2</dd>
+                    </div>
+                </dl>
+                <button class="botao-principal">Modo trapaça: OFF</button>
+                <button id="botao-aplicar" class="botao-principal">Aplicar Mudanças</button>
+            </section>
+        </dialog>
     </main>
 
     <footer>

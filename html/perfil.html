@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/main.css">
+    <link rel="stylesheet" href="../CSS/helpers.css">
     <link rel="stylesheet" href="../CSS/navbar.css">
     <link rel="stylesheet" href="../CSS/profile.css">
     <title>Perfil</title>
@@ -21,22 +22,22 @@
     </nav>
 
     <main class="centralizar">
-        <section class="card profile-width">
+        <section class="card largura-perfil-card">
             <h1>Editar Informações</h1>
-            <form id="profile-form">
-                <div class="input-group">
+            <form>
+                <div class="celula">
                     <label for="name">Nome Completo</label>
                     <input type="text" id="name" name="name" placeholder="Nome Completo">
                 </div>
-                <div class="input-group">
+                <div class="celula">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" placeholder="usuario@email.com">
                 </div>
-                <div class="input-group">
+                <div class="celula">
                     <label for="phone">Telefone</label>
                     <input type="tel" id="phone" name="phone" placeholder="(XX) XXXXX-XXXX">
                 </div>
-                <button type="submit" class="btnPrincipal save-button">Salvar Alterações</button>
+                <button type="submit" class="botao-principal botao-salvar">Salvar Alterações</button>
             </form>
         </section>
     </main>
@@ -44,13 +45,5 @@
     <footer>
         <p>© 2025 Universidade Estadual de Campinas - Campus Limeira</p>
     </footer>
-
-    <script>
-        const form = document.getElementById('profile-form');
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-            alert('Dados salvos com sucesso! (Demonstração)');
-        });
-    </script>
 </body>
 </html>

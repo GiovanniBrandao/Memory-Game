@@ -1,0 +1,46 @@
+/* =======================================
+  Helpers
+  ======================================= */
+
+.botao-fechar {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+}
+
+.botao-fechar:hover {
+  color: black;
+  cursor: pointer;
+}
+
+.botao-principal {
+  background-color: var(--dominante);
+  border: 2px solid var(--dominante);
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 1rem;
+  transition: background-color 0.3s ease;
+  width: fit-content;
+}
+
+.botao-principal:hover {
+  background-color: initial;
+  color: var(--dominante);
+}
+
+.card {
+  background-color: var(--form-background-color);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px var(--box-shadow-color);
+  box-sizing: border-box;
+  padding: 2.5rem;
+}
+
+.centralizar {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}

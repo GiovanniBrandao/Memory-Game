@@ -4,14 +4,13 @@
 
 :root {
   --base: #F7F4EA;
+  --box-shadow-color: rgba(0, 0, 0, 0.1);
   --dominante: #A8BBA3;
+  --form-background-color: #ffffff;
+  --quaternaria: #a8bba344;
   --secundaria: #EBD9D1;
   --terciaria: #B87C4C;
-  --quaternaria: #a8bba344;
   --text-color: #444;
-
-  --form-background-color: #ffffff;
-  --box-shadow-color: rgba(0, 0, 0, 0.1);
 }
 
 /* =======================================
@@ -25,21 +24,6 @@ body {
   padding: 0;
 }
 
-html, body {
-  height: 100%;
-  margin: 0;
-}
-
-main, body {
-  display: flex;
-  flex-direction: column;
-}
-
-main {
-  flex: 1;
-  margin: 2rem;
-}
-
 footer {
   background-color: var(--terciaria);
   color: var(--base);
@@ -47,24 +31,17 @@ footer {
   text-align: center;
 }
 
-p {
-  font-size: 1rem;
+html, body {
+  height: 100%;
   margin: 0;
 }
 
-label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: bold;
-  color: var();
-}
-
 input {
-  padding: 1rem;
   border: 1px solid var(--text-color);
   border-radius: 10px;
-  font-size: 1rem;
   box-sizing: border-box;
+  font-size: 1rem;
+  padding: 1rem;
 }
 
 input:focus {
@@ -72,37 +49,23 @@ input:focus {
   outline: none;
 }
 
-/* =======================================
-  Helpers
-  ======================================= */
-.centralizar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.card {
-  background-color: var(--form-background-color);
-  padding: 2.5rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px var(--box-shadow-color);
-  box-sizing: border-box;
-}
-
-.btnPrincipal {
-  padding: 1rem;
-  background-color: var(--dominante);
-  width: fit-content;
-  color: white;
-  border: 2px solid var(--dominante);
-  border-radius: 10px;
-  font-size: 1.1rem;
+label {
+  display: block;
   font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  margin-bottom: 0.5rem;
 }
 
-.btnPrincipal:hover {
-  background-color: var(--base);
-  color: var(--dominante);
+main {
+  flex: 1;
+  margin: 2rem;
+}
+
+main, body {
+  display: flex;
+  flex-direction: column;
+}
+
+p {
+  font-size: 1rem;
+  margin: 0;
 }

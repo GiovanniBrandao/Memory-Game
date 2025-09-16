@@ -3,21 +3,21 @@
   ======================================= */
 
 .card h1 {
-    margin-top: 0;
-    margin-bottom: 1.5rem;
-    font-size: 2rem;
-    text-align: center;
-    color: var(--text-color);
+  color: var(--text-color);
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  margin-top: 0;
+  text-align: center;
 }
 
-.input-group {
-    margin-bottom: 1.5rem;
+.celula {
+  margin-bottom: 1.5rem;
 }
 
-.save-button, .input-group input {
-    width: 100%;
+.celula input, .botao-salvar {
+  width: 100%;
 }
 
-.profile-width {
-    width: 30%;
+.largura-perfil-card {
+  width: 30%;
 }
