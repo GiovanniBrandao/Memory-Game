@@ -1,16 +1,42 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/main.css">
+    <link rel="stylesheet" href="../CSS/helpers.css">
+    <link rel="stylesheet" href="../css/signup.css">
     <title>Cadastro</title>
 </head>
+
 <body>
-    <main></main>
+    <main class="centralizar">
+        <section class="card login-central">
+            <h1>CADASTRO</h1>
+            <div class="formulario">
+                <form action="jogo.html">
+                    <label for="usuario">Nome de usuário</label>
+                    <input type="text" name="usuario" id="usuario" placeholder="Digite um nome de usuário" required>
+                    <label for="usuario">E-mail</label>
+                    <input type="text" name="usuario" id="usuario" placeholder="Digite seu e-mail" required>
+                    <label for="usuario">Confirmação de E-mail</label>
+                    <input type="text" name="usuario" id="usuario" placeholder="Confirme seu e-mail" required>
+                    <label for="senha">Senha</label>
+                    <input type="text" name="senha" id="senha" placeholder="Digite uma senha" required>
+                    <label for="senha">Confirmação de senha</label>
+                    <input type="text" name="senha" id="senha" placeholder="Digite a senha novamente" required>
+                    <button type="submit" class="botao-principal cadastro-button">Cadastrar</button>
+                </form>
+            </div>
+            <a href="login.html" target="_self">Já tem uma conta?</a>
+        </section>
+
+    </main>
 
     <footer>
         <p>© 2025 Universidade Estadual de Campinas - Campus Limeira</p>
     </footer>
 </body>
+
 </html>
