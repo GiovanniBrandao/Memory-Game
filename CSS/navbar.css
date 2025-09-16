@@ -1,6 +1,11 @@
 /* =======================================
   Menu de Navegação
   ======================================= */
+  
+a {
+  font-size: 1.5rem;
+}
+
 ul {
   background-color: var(--dominante);
   display: flex;
@@ -12,8 +17,8 @@ ul {
 ul li a {
   color: white;
   display: block;
-  padding: 14px 16px;
   font-weight: normal;
+  padding: 14px 16px;
   text-align: center;
   text-decoration: none;
 }
@@ -21,10 +26,6 @@ ul li a {
 ul li a:hover {
   background-color: var(--base);
   color: var(--dominante);
-}
-
-a {
-  font-size: 1.5rem;
 }
 
 .align-right {

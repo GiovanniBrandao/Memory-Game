@@ -1,39 +1,38 @@
-
 /* =======================================
-  Tela de login
-  ======================================= */
-
-.login-central {
-    align-items: center;
-    background-color: var(--form-background-color);
-    padding: 2.5rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px var(--box-shadow-color);
-    width: 100%;
-    max-width: 650px;
-    box-sizing: border-box;
-}
+  Tela de login
+  ======================================= */
 
 .formulario {
-    display: flex;
-    flex-direction: column;
-}
-
-.login-central a {
-    text-align: center;
-}
-
-.formulario form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 0rem 4rem 4rem 4rem;
-}
-
-.formulario form input {
-    height: 25px;
+  display: flex;
+  flex-direction: column;
 }
 
 .formulario button {
-    padding: 7px;
+  padding: 7px;
+}
+
+.formulario form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0rem 4rem 4rem 4rem;
+}
+
+.formulario form input {
+  height: 25px;
+}
+
+.login-central {
+  align-items: center;
+  background-color: var(--form-background-color);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px var(--box-shadow-color);
+  box-sizing: border-box;
+  max-width: 650px;
+  padding: 2.5rem;
+  width: 100%;
+}
+
+.login-central a {
+  text-align: center;
 }
