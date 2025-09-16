@@ -103,6 +103,17 @@ input:focus {
 }
 
 .btnPrincipal:hover {
-  background-color: var(--base);
+  background-color: initial;
   color: var(--dominante);
+}
+
+.fechar-btn {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+}
+
+.fechar-btn:hover {
+  color: black;
+  cursor: pointer;
 }

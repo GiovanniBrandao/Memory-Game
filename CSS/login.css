@@ -7,7 +7,7 @@
     align-items: center;
     background-color: var(--form-background-color);
     padding: 2.5rem;
-    border-radius: 8px;
+    border-radius: 10px;
     box-shadow: 0 4px 12px var(--box-shadow-color);
     width: 100%;
     max-width: 650px;
