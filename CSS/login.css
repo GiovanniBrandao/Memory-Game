@@ -14,6 +14,11 @@
     box-sizing: border-box;
 }
 
+.formulario {
+    display: flex;
+    flex-direction: column;
+}
+
 .login-central a {
     text-align: center;
 }
@@ -27,4 +32,8 @@
 
 .formulario form input {
     height: 25px;
+}
+
+.formulario button {
+    padding: 7px;
 }
