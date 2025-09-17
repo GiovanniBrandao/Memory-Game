@@ -1,4 +1,8 @@
 
+section {
+  margin-bottom: 2rem;
+}
+
 table {
   background: var(--base);
   border-collapse: collapse;
