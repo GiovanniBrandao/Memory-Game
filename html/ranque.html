@@ -21,94 +21,95 @@
         </ul>
     </nav>
 
-    <main class="centralizar"> 
-        <table>
-            <thead>
-                <tr>
-                    <th>Posição</th>
-                    <th>Username</th>
-                    <th>Pontuação</th>
-                    <th>Tempo (s)</th>
-                    <th>Data da Partida</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>jogador1</td>
-                    <td>1200</td>
-                    <td>45</td>
-                    <td>2025-09-10</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>jogador2</td>
-                    <td>1150</td>
-                    <td>50</td>
-                    <td>2025-09-09</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>jogador3</td>
-                    <td>1100</td>
-                    <td>55</td>
-                    <td>2025-09-08</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>jogador4</td>
-                    <td>1050</td>
-                    <td>60</td>
-                    <td>2025-09-07</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>jogador5</td>
-                    <td>1000</td>
-                    <td>65</td>
-                    <td>2025-09-06</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>jogador6</td>
-                    <td>950</td>
-                    <td>70</td>
-                    <td>2025-09-05</td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>jogador7</td>
-                    <td>900</td>
-                    <td>75</td>
-                    <td>2025-09-04</td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td>jogador8</td>
-                    <td>850</td>
-                    <td>80</td>
-                    <td>2025-09-03</td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td>jogador9</td>
-                    <td>800</td>
-                    <td>85</td>
-                    <td>2025-09-02</td>
-                </tr>
-                <tr>
-                    <td>10</td>
-                    <td>jogador10</td>
-                    <td>750</td>
-                    <td>90</td>
-                    <td>2025-09-01</td>
-                </tr>
-            </tbody>
-        </table>
+    <main class="centralizar" style="flex-direction: column;"> 
+        <div class="botoes-ranking">
+            <button class="botao-principal" onclick="mostrarRanking('ranking-2x2')">2x2</button>
+            <button class="botao-principal" onclick="mostrarRanking('ranking-4x4')">4x4</button>
+            <button class="botao-principal" onclick="mostrarRanking('ranking-6x6')">6x6</button>
+            <button class="botao-principal" onclick="mostrarRanking('ranking-8x8')">8x8</button>
+        </div>
+
+        <div id="ranking-2x2" class="tabela-ranking">
+            <h2>Ranking 2x2</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Posição</th>
+                        <th>Username</th>
+                        <th>Número de jogadas</th>
+                        <th>Tempo (s)</th>
+                        <th>Data da Partida</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>jogadorA</td><td>8</td><td>15</td><td>2025-09-15</td></tr>
+                    <tr><td>2</td><td>jogadorB</td><td>9</td><td>18</td><td>2025-09-14</td></tr>
+                    <tr><td>3</td><td>jogadorC</td><td>10</td><td>20</td><td>2025-09-13</td></tr>
+                    <tr><td>4</td><td>jogadorD</td><td>11</td><td>22</td><td>2025-09-12</td></tr>
+                    <tr><td>5</td><td>jogadorE</td><td>12</td><td>25</td><td>2025-09-11</td></tr>
+                    <tr><td>6</td><td>jogadorF</td><td>13</td><td>28</td><td>2025-09-10</td></tr>
+                    <tr><td>7</td><td>jogadorG</td><td>14</td><td>30</td><td>2025-09-09</td></tr>
+                    <tr><td>8</td><td>jogadorH</td><td>15</td><td>32</td><td>2025-09-08</td></tr>
+                    <tr><td>9</td><td>jogadorI</td><td>16</td><td>35</td><td>2025-09-07</td></tr>
+                    <tr><td>10</td><td>jogadorJ</td><td>17</td><td>38</td><td>2025-09-06</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="ranking-4x4" class="tabela-ranking" style="display: none;">
+            <h2>Ranking 4x4</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Posição</th>
+                        <th>Username</th>
+                        <th>Número de jogadas</th>
+                        <th>Tempo (s)</th>
+                        <th>Data da Partida</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>jogadorK</td><td>20</td><td>45</td><td>2025-09-15</td></tr>
+                    <tr><td>2</td><td>jogadorL</td><td>22</td><td>48</td><td>2025-09-14</td></tr>
+                    <tr><td>3</td><td>jogadorM</td><td>24</td><td>50</td><td>2025-09-13</td></tr>
+                    <tr><td>4</td><td>jogadorN</td><td>26</td><td>52</td><td>2025-09-12</td></tr>
+                    <tr><td>5</td><td>jogadorO</td><td>28</td><td>55</td><td>2025-09-11</td></tr>
+                    <tr><td>6</td><td>jogadorP</td><td>30</td><td>58</td><td>2025-09-10</td></tr>
+                    <tr><td>7</td><td>jogadorQ</td><td>32</td><td>60</td><td>2025-09-09</td></tr>
+                    <tr><td>8</td><td>jogadorR</td><td>34</td><td>62</td><td>2025-09-08</td></tr>
+                    <tr><td>9</td><td>jogadorS</td><td>36</td><td>65</td><td>2025-09-07</td></tr>
+                    <tr><td>10</td><td>jogadorT</td><td>38</td><td>68</td><td>2025-09-06</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="ranking-6x6" class="tabela-ranking" style="display: none;">
+            <h2>Ranking 6x6</h2>
+            <table>
+                </table>
+        </div>
+        
+        <div id="ranking-8x8" class="tabela-ranking" style="display: none;">
+            <h2>Ranking 8x8</h2>
+            <table>
+                </table>
+        </div>
+
     </main>
 
     <footer>
         <p>© 2025 Universidade Estadual de Campinas - Campus Limeira</p>
     </footer>
+
+    <script>
+        function mostrarRanking(id) {
+            // Esconde todas as tabelas de ranking
+            document.querySelectorAll('.tabela-ranking').forEach(function(tabela) {
+                tabela.style.display = 'none';
+            });
+            // Mostra apenas a tabela clicada
+            document.getElementById(id).style.display = 'block';
+        }
+    </script>
 </body>
 </html>

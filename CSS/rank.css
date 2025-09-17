@@ -1,6 +1,3 @@
-/* =======================================
-  Tela de ranque
-  ======================================= */
 
 table {
   background: var(--base);
@@ -26,4 +23,14 @@ tr:hover {
 
 tr:nth-child(even) {
   background-color: var(--quaternaria);
+}
+
+.botoes-ranking {
+  display: flex;
+  gap: 15px; 
+  margin-bottom: 2rem; 
+}
+
+.tabela-ranking {
+    width: 100%;
 }
