@@ -3,10 +3,10 @@
   ======================================= */
 
 
-.login-central a {
+.login-central {
     display: flex;
     flex-direction: column;
-    text-align: center;
+    align-items: center;
 }
 
 .formulario form {
@@ -15,7 +15,14 @@
     padding: 0rem 4rem 4rem 4rem;
 }
 
+@media (max-width: 600px) {
+    .formulario form {
+        padding: 0rem 1rem 1rem 1rem;
+    }
+}
+
 .formulario form input {
+    width: 20rem;
     margin-bottom: 1.5rem;
 }
 
@@ -25,7 +32,7 @@
 }
 
 .login-central a:hover {
-    text-decoration:underline;
+    text-decoration: underline;
 }
 
 .entrar-button {

@@ -3,16 +3,22 @@
   ======================================= */
 
 
-.login-central a {
+.login-central {
     display: flex;
     flex-direction: column;
-    text-align: center;
+    align-items: center;
 }
 
 .formulario form {
     display: flex;
     flex-direction: column;
     padding: 0rem 4rem 4rem 4rem;
+}
+
+@media (max-width: 600px) {
+    .formulario form {
+        padding: 0rem 1rem 1rem 1rem;
+    }
 }
 
 .formulario form input {
@@ -26,7 +32,7 @@
 }
 
 .login-central a:hover {
-    text-decoration:underline;
+    text-decoration: underline;
 }
 
 .cadastro-button {
