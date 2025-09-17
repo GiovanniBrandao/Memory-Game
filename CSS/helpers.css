@@ -36,11 +36,17 @@
   border-radius: 10px;
   box-shadow: 0 4px 12px var(--box-shadow-color);
   box-sizing: border-box;
-  padding: 2.5rem;
+  padding: 1.5rem;
 }
 
 .centralizar {
   align-items: center;
   display: flex;
   justify-content: center;
+}
+
+@media screen and (max-width: 1000px) {
+  .botao-principal {
+    font-size: medium;
+  }
 }

@@ -2,6 +2,11 @@
   Tela de jogo
   ======================================= */
 
+dd {
+  margin-left: 0;
+  text-align: center;
+}
+
 dialog {
   align-items: center;
   background-color: rgba(0, 0, 0, 0.4);
@@ -26,8 +31,8 @@ h1, h2, h3 {
 
 img {
   cursor: pointer;
-  height: 170px;
-  width: 170px;
+  height: 150px;
+  width: 150px;
 }
 
 .cabecalho {
@@ -69,4 +74,60 @@ img {
 
 #botao-aplicar {
   float: right;
+}
+
+@media screen and (max-width: 1540px) {
+  .modal-conteudo button {
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+  #botao-aplicar {
+    float: none;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  img {
+    height: 100px;
+    width: 100px;
+  }
+
+  .container {
+    display: inline-block;
+    text-align: center;
+  }
+
+  .cabecalho {
+    display: inline-block;
+    width: auto;
+    margin-bottom: 1rem;
+  }
+
+  h1, h2, button {
+    margin-bottom: 1rem;
+  }
+
+  .modal-conteudo {
+    width: 35%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .modal-conteudo {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .tabuleiro {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-itens {
+    display: inline-block;
+  }
+
+  dd {
+    margin-bottom: 1rem;
+  }
 }

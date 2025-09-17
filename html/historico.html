@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/main.css">
     <link rel="stylesheet" href="../CSS/navbar.css">
-    <link rel="stylesheet" href="../CSS/game.css">
-    <title>Jogo da memória</title>
+    <link rel="stylesheet" href="../CSS/historico.css">
+    <title>Jogo da memória - Histórico</title>
 </head>
 <body>
     <header>
@@ -21,7 +21,62 @@
         </nav>
     </header>
 
-    <main></main>
+    <main class="container-historico">
+        <h1>Histórico de Partidas</h1>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Jogador</th>
+                        <th>Dimensão</th>
+                        <th>Modalidade</th>
+                        <th>Tempo</th>
+                        <th>Jogadas</th>
+                        <th>Resultado</th>
+                        <th>Data</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Jogador">Jogador1</td>
+                        <td data-label="Dimensão">4x4</td>
+                        <td data-label="Modalidade">Normal</td>
+                        <td data-label="Tempo">00:02:15</td>
+                        <td data-label="Jogadas">24</td>
+                        <td data-label="Resultado" class="vitoria">Vitória</td>
+                        <td data-label="Data">16/09/2025 11:00</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Jogador">Jogador1</td>
+                        <td data-label="Dimensão">2x2</td>
+                        <td data-label="Modalidade">Normal</td>
+                        <td data-label="Tempo">00:00:35</td>
+                        <td data-label="Jogadas">10</td>
+                        <td data-label="Resultado" class="vitoria">Vitória</td>
+                        <td data-label="Data">15/09/2025 20:30</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Jogador">Jogador1</td>
+                        <td data-label="Dimensão">6x6</td>
+                        <td data-label="Modalidade">Contra o tempo</td>
+                        <td data-label="Tempo">00:05:00</td>
+                        <td data-label="Jogadas">45</td>
+                        <td data-label="Resultado" class="derrota">Derrota</td>
+                        <td data-label="Data">15/09/2025 18:15</td>
+                    </tr>
+                     <tr>
+                        <td data-label="Jogador">Jogador1</td>
+                        <td data-label="Dimensão">8x8</td>
+                        <td data-label="Modalidade">Contra o tempo</td>
+                        <td data-label="Tempo">00:04:51</td>
+                        <td data-label="Jogadas">71</td>
+                        <td data-label="Resultado" class="vitoria">Vitória</td>
+                        <td data-label="Data">14/09/2025 13:40</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
 
     <footer>
         <p>© 2025 Universidade Estadual de Campinas - Campus Limeira</p>

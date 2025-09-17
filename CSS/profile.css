@@ -19,5 +19,17 @@
 }
 
 .largura-perfil-card {
-  width: 30%;
+  width: 40%;
+}
+
+@media screen and (max-width: 1300px) {
+  .largura-perfil-card {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .largura-perfil-card {
+    width: 90%;
+  }
 }
