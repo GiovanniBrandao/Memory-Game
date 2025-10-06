@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,10 @@
     <link rel="stylesheet" href="../CSS/main.css">
     <link rel="stylesheet" href="../CSS/helpers.css">
     <link rel="stylesheet" href="../CSS/navbar.css">
-    <link rel="stylesheet" href="../CSS/game.css">
+    <link rel="stylesheet" href="../CSS/game copy.css">
     <title>Jogo da memória</title>
 </head>
+
 <body>
     <header>
         <nav aria-label="Navegação principal">
@@ -34,22 +36,54 @@
 
         <div class="centralizar">
             <div class="tabuleiro">
-                <img class="card" src="../Resources/Images/coracao.svg" alt="">
-                <img class="card" src="../Resources/Images/coracao.svg" alt="">
-                <img class="card" src="../Resources/Images/pet.svg" alt="">
-                <img class="card" src="../Resources/Images/pet.svg" alt="">
-                <img class="card" src="../Resources/Images/arvores.svg" alt="">
-                <img class="card" src="../Resources/Images/arvores.svg" alt="">
-                <img class="card" src="../Resources/Images/foguete.svg" alt="">
-                <img class="card" src="../Resources/Images/foguete.svg" alt="">
-                <img class="card" src="../Resources/Images/chave.svg" alt="">
-                <img class="card" src="../Resources/Images/chave.svg" alt="">
-                <img class="card" src="../Resources/Images/gota.svg" alt="">
-                <img class="card" src="../Resources/Images/gota.svg" alt="">
-                <img class="card" src="../Resources/Images/coroa.svg" alt="">
-                <img class="card" src="../Resources/Images/coroa.svg" alt="">
-                <img class="card" src="../Resources/Images/bola.svg" alt="">
-                <img class="card" src="../Resources/Images/bola.svg" alt="">
+                <div class="card" data-framework="coracao">
+                    <img class="icon" src="../Resources/Images/coracao.svg" alt="">
+                </div>
+                <div class="card" data-framework="coracao">
+                    <img class="icon" src="../Resources/Images/coracao.svg" alt="">
+                </div>
+                <div class="card" data-framework="pet">
+                    <img class="icon" src="../Resources/Images/pet.svg" alt="">
+                </div>
+                <div class="card" data-framework="pet">
+                    <img class="icon" src="../Resources/Images/pet.svg" alt="">
+                </div>
+                <div class="card" data-framework="arvores">
+                    <img class="icon" src="../Resources/Images/arvores.svg" alt="">
+                </div>
+                <div class="card" data-framework="arvores">
+                    <img class="icon" src="../Resources/Images/arvores.svg" alt="">
+                </div>
+                <div class="card"  data-framework="foguete">
+                    <img class="icon" src="../Resources/Images/foguete.svg" alt="">
+                </div>
+                <div class="card"  data-framework="foguete">
+                    <img class="icon" src="../Resources/Images/foguete.svg" alt="">
+                </div>
+                <div class="card" data-framework="chave">
+                    <img class="icon" src="../Resources/Images/chave.svg" alt="">
+                </div>
+                <div class="card" data-framework="chave">
+                    <img class="icon" src="../Resources/Images/chave.svg" alt="">
+                </div>
+                <div class="card"  data-framework="gota">
+                    <img class="icon" src="../Resources/Images/gota.svg" alt="">
+                </div>
+                <div class="card" data-framework="gota">
+                    <img class="icon" src="../Resources/Images/gota.svg" alt="">
+                </div>
+                <div class="card" data-framework="coroa">
+                    <img class="icon" src="../Resources/Images/coroa.svg" alt="">
+                </div>
+                <div class="card" data-framework="coroa">
+                    <img class="icon" src="../Resources/Images/coroa.svg" alt="">
+                </div>
+                <div class="card" data-framework="bola">
+                    <img class="icon" src="../Resources/Images/bola.svg" alt="">
+                </div>
+                <div class="card" data-framework="bola">
+                    <img class="icon" src="../Resources/Images/bola.svg" alt="">
+                </div>
             </div>
         </div>
 
@@ -70,13 +104,14 @@
                 <button class="botao-principal">Modo trapaça: OFF</button>
                 <button id="botao-aplicar" class="botao-principal">Aplicar Mudanças</button>
             </section>
-    </dialog>
-</main>
+        </dialog>
+    </main>
 
-<footer>
-    <p>© 2025 Universidade Estadual de Campinas - Campus Limeira</p>
-</footer>
+    <footer>
+        <p>© 2025 Universidade Estadual de Campinas - Campus Limeira</p>
+    </footer>
 
-<script src="../JS/jogo.js"></script>
+    <script src="../JS/testejogo.js"></script>
 </body>
+
 </html>

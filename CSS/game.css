@@ -25,7 +25,9 @@ dt {
   font-weight: bold;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   margin: 0;
 }
 
@@ -81,6 +83,7 @@ img {
     display: inline-block;
     margin-bottom: 1rem;
   }
+
   #botao-aplicar {
     float: none;
   }
@@ -103,7 +106,9 @@ img {
     margin-bottom: 1rem;
   }
 
-  h1, h2, button {
+  h1,
+  h2,
+  button {
     margin-bottom: 1rem;
   }
 
@@ -130,4 +135,22 @@ img {
   dd {
     margin-bottom: 1rem;
   }
+}
+
+.card {
+    background-color: #000000; 
+}
+
+.icon {
+    opacity: 0;
+    
+    transition: opacity 0.3s ease;
+}
+
+.card.virada {
+    background-color: #ffffff; 
+}
+
+.card.virada .icon {
+    opacity: 1; 
 }

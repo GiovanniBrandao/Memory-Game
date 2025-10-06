@@ -1,69 +1,71 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const modal = document.querySelector('dialog');
-    const botaoFecharModal = document.querySelector('.botao-fechar');
-    const botaoConfiguracoes = document.querySelector('.cabecalho .botao-principal');
-    const botaoAplicar = document.getElementById('botao-aplicar');
-    const modoJogoItem = document.querySelector('.item:nth-child(1)');
-    const tabuleiroItem = document.querySelector('.item:nth-child(2)');
-    const botaoModoTrapaca = modal.querySelector('.botao-principal:not(#botao-aplicar)');
-    const modoJogoTexto = modoJogoItem.querySelector('dd');
-    const tamanhoTabuleiroTexto = tabuleiroItem.querySelector('dd');
+const cartas = document.querySelectorAll('.card');
 
-    let configuracoes = {
-        modoDeJogo: 'Normal',
-        tamanhoDoTabuleiro: '4x4',
-        modoTrapaca: false
-    };
+let cartaVirada = false;
+let travarTabuleiro = false;
+let cartaUm, cartaDois;
+let tamTabuleiro = 16;
 
-    const opcoesTabuleiro = ['2x2', '4x4', '6x6', '8x8'];
+function virarCarta() {
+    if (travarTabuleiro) return;
+    this.classList.add('virada');
+    if (this === cartaUm) return;
 
-    function fecharModal() {
-        if (modal) {
-            modal.close();
-        }
+    if (!cartaVirada) {
+        cartaVirada = true;
+        cartaUm = this;
+        return;
     }
 
-    function abrirModal() {
-        if (modal) {
-            modal.showModal();
-        }
+    cartaDois = this;
+
+    verMatch();
+}
+
+
+function verMatch() {
+    if (cartaUm.dataset.framework === cartaDois.dataset.framework) {
+        cartasErradas();
+        return;
+    } else {
+
+        desvirarCartas();
     }
 
-    function alternarModoJogo() {
-        configuracoes.modoDeJogo = (configuracoes.modoDeJogo === 'Normal') ? 'Contra o tempo' : 'Normal';
-        modoJogoTexto.textContent = configuracoes.modoDeJogo;
-    }
 
-    function alternarTamanhoTabuleiro() {
-        const indiceAtual = opcoesTabuleiro.indexOf(configuracoes.tamanhoDoTabuleiro);
-        const proximoIndice = (indiceAtual + 1) % opcoesTabuleiro.length;
-        configuracoes.tamanhoDoTabuleiro = opcoesTabuleiro[proximoIndice];
-        tamanhoTabuleiroTexto.textContent = configuracoes.tamanhoDoTabuleiro;
-    }
+}
 
-    function toggleModoTrapaca() {
-        configuracoes.modoTrapaca = !configuracoes.modoTrapaca;
-        botaoModoTrapaca.textContent = `Modo trapaça: ${configuracoes.modoTrapaca ? 'ON' : 'OFF'}`;
-    }
+function cartasErradas() {
+    cartaUm.removeEventListener('click', virarCarta);
+    cartaDois.removeEventListener('click', virarCarta);
 
-    if (modal && botaoFecharModal && botaoConfiguracoes && modoJogoItem && tabuleiroItem && botaoModoTrapaca && botaoAplicar) {
-        
-        botaoConfiguracoes.addEventListener('click', abrirModal);
-        
-        botaoFecharModal.addEventListener('click', fecharModal);
-        
-        modal.addEventListener('click', (event) => {
-            if (event.target === modal) {
-                fecharModal();
-            }
-        });
-        
-        modoJogoItem.addEventListener('click', alternarModoJogo);
-        tabuleiroItem.addEventListener('click', alternarTamanhoTabuleiro);
-        botaoModoTrapaca.addEventListener('click', toggleModoTrapaca);
-        
-        botaoAplicar.addEventListener('click', () => {
-            fecharModal();
-        });
-    }
+    resetarTabuleiro();
+}
+
+function desvirarCartas() {
+    travarTabuleiro = true;
+
+    setTimeout(() => {
+        cartaUm.classList.remove('virada');
+        cartaDois.classList.remove('virada');
+
+        resetarTabuleiro();
+
+    }, 750);
+}
+
+function resetarTabuleiro() {
+    [cartaVirada, travarTabuleiro] = [false, false];
+    [cartaUm, cartaDois] = [null, null];
+}
+
+(function embaralharTabuleiro(){
+    cartas.forEach(cartas => {
+        let posicao = Math.floor(Math.random() * tamTabuleiro);
+        cartas.style.order = posicao;
+
+    });
+})();
+
+cartas.forEach(carta => {
+    carta.addEventListener('click', virarCarta);
 });
