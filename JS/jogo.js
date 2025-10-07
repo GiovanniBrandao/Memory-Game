@@ -3,12 +3,41 @@ const cartas = document.querySelectorAll('.card');
 let cartaVirada = false;
 let travarTabuleiro = false;
 let cartaUm, cartaDois;
-let tamTabuleiro = 16;
+let tamTabuleiro = 16; 
+let jogoIniciado = false;
+let jogadas = 0;
+
+const botaoIniciarDesistir = document.getElementById('botao-iniciar-desistir');
+const exibirJogadas = document.getElementById('jogadas');
+
+function controlarInicioDesistencia() {
+    if (jogoIniciado) {
+        jogoIniciado = false;
+        botaoIniciarDesistir.textContent = 'Iniciar jogo';
+        alert('Você desistiu do jogo.');
+    } else {
+        jogoIniciado = true;
+        botaoIniciarDesistir.textContent = 'Desistir do jogo';
+    }
+
+    reiniciarJogo(); 
+}
+
+function ganhou() {
+    const cartasAcertadas = document.querySelectorAll('.card.acertada');
+
+    if (cartasAcertadas.length === cartas.length) {
+        alert('Parabéns, você ganhou!');
+        reiniciarJogo();
+    }
+}
 
 function virarCarta() {
+    if (!jogoIniciado) return; 
     if (travarTabuleiro) return;
-    this.classList.add('virada');
     if (this === cartaUm) return;
+
+    this.classList.add('virada');
 
     if (!cartaVirada) {
         cartaVirada = true;
@@ -19,26 +48,44 @@ function virarCarta() {
     cartaDois = this;
 
     verMatch();
+    jogadas++;
+    exibirJogadas.textContent = 'Jogadas: ' + jogadas;
 }
-
 
 function verMatch() {
-    if (cartaUm.dataset.framework === cartaDois.dataset.framework) {
-        cartasErradas();
-        return;
-    } else {
+    const isMatch = cartaUm.dataset.framework === cartaDois.dataset.framework;
 
+    if (isMatch) {
+        desabilitarCartas(); 
+    } else {
         desvirarCartas();
     }
-
-
 }
 
-function cartasErradas() {
+function reiniciarJogo() {
+    cartas.forEach(carta => {
+        carta.classList.remove('virada');
+        carta.addEventListener('click', virarCarta); 
+    });
+    
+    resetarTabuleiro();
+    
+    embaralharTabuleiro(); 
+    
+    jogadas = 0;
+    exibirJogadas.textContent = 'Jogadas: ' + jogadas;
+}
+
+function desabilitarCartas() {
     cartaUm.removeEventListener('click', virarCarta);
     cartaDois.removeEventListener('click', virarCarta);
 
+    cartaUm.classList.add('acertada'); 
+    cartaDois.classList.add('acertada');
+
     resetarTabuleiro();
+
+    ganhou();
 }
 
 function desvirarCartas() {
@@ -48,8 +95,7 @@ function desvirarCartas() {
         cartaUm.classList.remove('virada');
         cartaDois.classList.remove('virada');
 
-        resetarTabuleiro();
-
+        resetarTabuleiro(); 
     }, 750);
 }
 
@@ -58,14 +104,18 @@ function resetarTabuleiro() {
     [cartaUm, cartaDois] = [null, null];
 }
 
-(function embaralharTabuleiro(){
-    cartas.forEach(cartas => {
+function embaralharTabuleiro(){ 
+    cartas.forEach(carta => {
         let posicao = Math.floor(Math.random() * tamTabuleiro);
-        cartas.style.order = posicao;
-
+        carta.style.order = posicao;
     });
-})();
+}
+
+embaralharTabuleiro();
 
 cartas.forEach(carta => {
     carta.addEventListener('click', virarCarta);
 });
+
+botaoIniciarDesistir.addEventListener('click', controlarInicioDesistencia); 
+

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../CSS/main.css">
     <link rel="stylesheet" href="../CSS/helpers.css">
     <link rel="stylesheet" href="../CSS/navbar.css">
-    <link rel="stylesheet" href="../CSS/game copy.css">
+    <link rel="stylesheet" href="../CSS/game.css">
     <title>Jogo da memória</title>
 </head>
 
@@ -27,11 +27,11 @@
 
     <main class="container">
         <section class="cabecalho">
-            <h1>00:00:00</h1>
-            <h2>Jogadas: 0</h2>
-            <button class="botao-principal">Configurações</button>
-            <button class="botao-principal" id="trapaça">Exibir peças ocultas: OFF</button>
-            <button class="botao-principal">Desistir do jogo</button>
+            <h1 id="tempo">00:05:00</h1>
+            <h2 id="jogadas">Jogadas: 0</h2>
+            <button class="botao-principal" id="botao-abrir-configuracoes">Configurações</button>
+            <button class="botao-principal" id="botao-trapaca">Exibir peças ocultas: OFF</button>
+            <button class="botao-principal" id="botao-iniciar-desistir">Iniciar jogo</button>
         </section>
 
         <div class="centralizar">
@@ -87,31 +87,42 @@
             </div>
         </div>
 
-        <dialog>
+        <dialog id="modal">
             <section class="modal-conteudo">
-                <span class="botao-fechar">&times;</span>
-                <h2>Configurações</h2>
-                <dl class="grid-itens">
-                    <div class="item">
-                        <dt>Modo de Jogo:</dt>
-                        <dd>Normal</dd>
-                    </div>
-                    <div class="item">
-                        <dt>Tabuleiro:</dt>
-                        <dd>2x2</dd>
-                    </div>
-                </dl>
-                <button class="botao-principal">Modo trapaça: OFF</button>
-                <button id="botao-aplicar" class="botao-principal">Aplicar Mudanças</button>
+                <div>
+                    <span class="botao-fechar" id="botao-fechar">&times;</span>
+                    <h2>Configurações</h2>
+                </div>
+                
+                <div id="modo-jogo-container">
+                    <dt>Modo de Jogo:</dt>
+                    <dd>
+                        <button class="botao-navegacao" data-action="anterior" data-target="jogo">&lt;</button>
+                        <span id="modo-jogo-valor"></span>
+                        <button class="botao-navegacao" data-action="proximo" data-target="jogo">&gt;</button>
+                    </dd>
+                </div>
+
+                <div id="tabuleiro-container">
+                    <dt>Tabuleiro:</dt>
+                    <dd>
+                        <button class="botao-navegacao" data-action="anterior" data-target="tabuleiro">&lt;</button>
+                        <span id="tabuleiro-valor"></span>
+                        <button class="botao-navegacao" data-action="proximo" data-target="tabuleiro">&gt;</button>
+                    </dd>
+                </div>
+
+                <button class="botao-principal" id="habilitar-trapaca">Modo trapaça: OFF</button>
             </section>
         </dialog>
-    </main>
+</main>
 
-    <footer>
-        <p>© 2025 Universidade Estadual de Campinas - Campus Limeira</p>
-    </footer>
+<footer>
+    <p>© 2025 Universidade Estadual de Campinas - Campus Limeira</p>
+</footer>
 
-    <script src="../JS/testejogo.js"></script>
+<script src="../JS/modal.js"></script>
+<script src="../JS/jogo.js"></script> 
 </body>
 
 </html>

@@ -23,7 +23,6 @@
   font-weight: bold;
   padding: 1rem;
   transition: background-color 0.3s ease;
-  width: fit-content;
 }
 
 .botao-principal:hover {
