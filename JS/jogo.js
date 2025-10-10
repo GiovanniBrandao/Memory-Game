@@ -3,35 +3,35 @@ const cartas = document.querySelectorAll('.card');
 let cartaVirada = false;
 let travarTabuleiro = false;
 let cartaUm, cartaDois;
-let tamTabuleiro = 16; 
+let tamTabuleiro = 16;
 let jogoIniciado = false;
 let jogadas = 0;
-let modoTrapacaAtivo = false; 
+let modoTrapacaAtivo = false;
 
 const botaoIniciarDesistir = document.getElementById('botao-iniciar-desistir');
 const exibirJogadas = document.getElementById('jogadas');
 
 function revelarCartas() {
-    modoTrapacaAtivo = true; 
-    
-    const cartas = document.querySelectorAll('.card'); 
+    modoTrapacaAtivo = true;
+
+    const cartas = document.querySelectorAll('.card');
     cartas.forEach(carta => {
         carta.classList.add('virada');
-        
-        carta.removeEventListener('click', virarCarta); 
+
+        carta.removeEventListener('click', virarCarta);
     });
 }
 
 function esconderCartas() {
-    modoTrapacaAtivo = false; 
-    
-    const cartas = document.querySelectorAll('.card'); 
+    modoTrapacaAtivo = false;
+
+    const cartas = document.querySelectorAll('.card');
     cartas.forEach(carta => {
-        if (!carta.classList.contains('acertada')) { 
+        if (!carta.classList.contains('acertada')) {
             carta.classList.remove('virada');
         }
-        
-        carta.addEventListener('click', virarCarta); 
+
+        carta.addEventListener('click', virarCarta);
     });
 }
 
@@ -45,7 +45,7 @@ function controlarInicioDesistencia() {
         botaoIniciarDesistir.textContent = 'Desistir do jogo';
     }
 
-    reiniciarJogo(); 
+    reiniciarJogo();
 }
 
 function ganhou() {
@@ -58,7 +58,7 @@ function ganhou() {
 }
 
 function virarCarta() {
-    if (!jogoIniciado) return; 
+    if (!jogoIniciado) return;
     if (travarTabuleiro) return;
     if (this === cartaUm) return;
 
@@ -81,7 +81,7 @@ function verMatch() {
     const isMatch = cartaUm.dataset.framework === cartaDois.dataset.framework;
 
     if (isMatch) {
-        desabilitarCartas(); 
+        desabilitarCartas();
     } else {
         desvirarCartas();
     }
@@ -90,13 +90,13 @@ function verMatch() {
 function reiniciarJogo() {
     cartas.forEach(carta => {
         carta.classList.remove('virada');
-        carta.addEventListener('click', virarCarta); 
+        carta.addEventListener('click', virarCarta);
     });
-    
+
     resetarTabuleiro();
-    
-    embaralharTabuleiro(); 
-    
+
+    embaralharTabuleiro();
+
     jogadas = 0;
     exibirJogadas.textContent = 'Jogadas: ' + jogadas;
 }
@@ -105,7 +105,7 @@ function desabilitarCartas() {
     cartaUm.removeEventListener('click', virarCarta);
     cartaDois.removeEventListener('click', virarCarta);
 
-    cartaUm.classList.add('acertada'); 
+    cartaUm.classList.add('acertada');
     cartaDois.classList.add('acertada');
 
     resetarTabuleiro();
@@ -120,7 +120,7 @@ function desvirarCartas() {
         cartaUm.classList.remove('virada');
         cartaDois.classList.remove('virada');
 
-        resetarTabuleiro(); 
+        resetarTabuleiro();
     }, 750);
 }
 
@@ -129,7 +129,7 @@ function resetarTabuleiro() {
     [cartaUm, cartaDois] = [null, null];
 }
 
-function embaralharTabuleiro(){ 
+function embaralharTabuleiro() {
     cartas.forEach(carta => {
         let posicao = Math.floor(Math.random() * tamTabuleiro);
         carta.style.order = posicao;
@@ -142,6 +142,8 @@ cartas.forEach(carta => {
     carta.addEventListener('click', virarCarta);
 });
 
-botaoIniciarDesistir.addEventListener('click', controlarInicioDesistencia); 
 
 // MODO CONTRA O TEMPO
+
+
+// Funções de funcionamento do jogo da memória adquiridas em https://www.youtube.com/watch?v=NGtx3EBlpNE

@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
             botaoTrapaca.style.display = 'none';
             habilitarTrapaca.textContent = 'Modo trapaça: OFF';
         }
-});
+    });
 
 
     let trapacaAtivada = false;
@@ -74,9 +74,89 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const valorModoJogo = document.getElementById('modo-jogo-valor');
     const valorTabuleiro = document.getElementById('tabuleiro-valor');
+    const botaoIniciarDesistir = document.getElementById('botao-iniciar-desistir');
     const tempo = document.getElementById('tempo');
 
     const botoesNavegacao = document.querySelectorAll('.botao-navegacao');
+
+
+    // funcionamento da contagem regressiva
+
+    let tempoTotalEmSegundos = 60; // 5 minutos
+    let intervaloDoTimer = null;
+
+    function formatarTempo(totalSegundos) {
+        const minutos = Math.floor(totalSegundos / 60);
+        const segundos = totalSegundos % 60;
+
+        const pad = (num) => (num < 10 ? '0' : '') + num;
+
+        return `${pad(minutos)}:${pad(segundos)}`;
+    }
+
+    function contagemRegressiva() {
+        if (intervaloDoTimer) {
+            clearInterval(intervaloDoTimer);
+        }
+
+        tempo.textContent = formatarTempo(tempoTotalEmSegundos);
+
+
+
+        intervaloDoTimer = setInterval(() => {
+
+            tempoTotalEmSegundos--;
+
+            if (tempoTotalEmSegundos <= 0) {
+                clearInterval(intervaloDoTimer);
+                intervaloDoTimer = null;
+
+                tempo.textContent = formatarTempo(0);
+
+                alert('O tempo acabou!');
+                botaoIniciarDesistir.textContent = 'Recomeçar';
+                return;
+            }
+
+            tempo.textContent = formatarTempo(tempoTotalEmSegundos);
+
+        }, 1000);
+    }
+
+    function pararTimer() {
+        if (intervaloDoTimer) {
+            clearInterval(intervaloDoTimer);
+            intervaloDoTimer = null;
+        }
+        tempoTotalEmSegundos = 60; // 5 minutos
+        tempo.textContent = formatarTempo(tempoTotalEmSegundos);
+        botaoIniciarDesistir.textContent = 'Iniciar jogo';
+    }
+
+    botaoIniciarDesistir.addEventListener('click', function () {
+        const modoAtual = opcoes.jogo[indicesAtuais.jogo];
+        const textoBotao = botaoIniciarDesistir.textContent;
+
+        if (textoBotao.includes('Recomeçar')) {
+
+            pararTimer();
+
+            if (typeof reiniciarJogo === 'function') {
+                reiniciarJogo();
+            }
+            return;
+        }
+
+        if (modoAtual !== "Contra o Tempo") {
+            return;
+        }
+
+        if (intervaloDoTimer === null) {
+            contagemRegressiva();
+        } else {
+            pararTimer();
+        }
+    });
 
     function exibirValoresConfiguracao() {
         valorModoJogo.textContent = opcoes.jogo[indicesAtuais.jogo];
@@ -84,8 +164,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         const modoAtual = opcoes.jogo[indicesAtuais.jogo];
+
+        pararTimer();
+
         if (modoAtual === "Contra o Tempo") {
             tempo.style.display = 'block';
+            tempo.textContent = formatarTempo(tempoTotalEmSegundos);
+
         } else {
             tempo.style.display = 'none';
         }
@@ -119,3 +204,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     exibirValoresConfiguracao();
 });
+
+//Função de timer adquiridada em
