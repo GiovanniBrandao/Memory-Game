@@ -6,9 +6,34 @@ let cartaUm, cartaDois;
 let tamTabuleiro = 16; 
 let jogoIniciado = false;
 let jogadas = 0;
+let modoTrapacaAtivo = false; 
 
 const botaoIniciarDesistir = document.getElementById('botao-iniciar-desistir');
 const exibirJogadas = document.getElementById('jogadas');
+
+function revelarCartas() {
+    modoTrapacaAtivo = true; 
+    
+    const cartas = document.querySelectorAll('.card'); 
+    cartas.forEach(carta => {
+        carta.classList.add('virada');
+        
+        carta.removeEventListener('click', virarCarta); 
+    });
+}
+
+function esconderCartas() {
+    modoTrapacaAtivo = false; 
+    
+    const cartas = document.querySelectorAll('.card'); 
+    cartas.forEach(carta => {
+        if (!carta.classList.contains('acertada')) { 
+            carta.classList.remove('virada');
+        }
+        
+        carta.addEventListener('click', virarCarta); 
+    });
+}
 
 function controlarInicioDesistencia() {
     if (jogoIniciado) {
@@ -119,3 +144,4 @@ cartas.forEach(carta => {
 
 botaoIniciarDesistir.addEventListener('click', controlarInicioDesistencia); 
 
+// MODO CONTRA O TEMPO
