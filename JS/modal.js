@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // funcionamento da contagem regressiva
 
-    let tempoTotalEmSegundos = 60; // 5 minutos
+    let tempoTotalEmSegundos = 60; // tempo do timer
     let intervaloDoTimer = null;
 
     function formatarTempo(totalSegundos) {
@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
             clearInterval(intervaloDoTimer);
             intervaloDoTimer = null;
         }
-        tempoTotalEmSegundos = 60; // 5 minutos
+        tempoTotalEmSegundos = 60; // tempo inicial
         tempo.textContent = formatarTempo(tempoTotalEmSegundos);
         botaoIniciarDesistir.textContent = 'Iniciar jogo';
     }
@@ -189,6 +189,10 @@ document.addEventListener('DOMContentLoaded', () => {
         indicesAtuais[target] = indiceAtual;
 
         exibirValoresConfiguracao();
+
+        if (target === 'tabuleiro' && typeof window.aplicarTamanhoTabuleiro === 'function') {
+            window.aplicarTamanhoTabuleiro(opcoes.tabuleiro[indiceAtual]);
+        }
     }
 
     botoesNavegacao.forEach(botao => {

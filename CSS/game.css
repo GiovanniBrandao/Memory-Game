@@ -18,7 +18,7 @@ dialog {
 }
 
 dialog::backdrop {
-  background-color: rgba(0, 0, 0, 0.7); 
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 dt {
@@ -66,14 +66,24 @@ img {
   grid-template-columns: repeat(4, 1fr);
 }
 
+.tabuleiro.grid-6x6 {
+  grid-template-columns: repeat(6, 1fr);
+  width: 630px;
+}
+
+.tabuleiro.grid-8x8 {
+  grid-template-columns: repeat(8, 1fr);
+  width: 840px;
+}
+
 .botao-navegacao {
   border: none;
-  background-color: transparent; 
-  padding: 0; 
+  background-color: transparent;
+  padding: 0;
   color: var(--text-color);
   box-shadow: none;
   font-size: 1.2rem;
-  outline: none; 
+  outline: none;
 }
 
 .botao-navegacao:hover {
@@ -82,7 +92,7 @@ img {
 }
 
 .card {
-  background-color: var(--dominante); 
+  background-color: var(--dominante);
 }
 
 .icon {
@@ -91,11 +101,11 @@ img {
 }
 
 .card.virada {
-  background-color: #ffffff; 
+  background-color: #ffffff;
 }
 
 .card.virada .icon {
-  opacity: 1; 
+  opacity: 1;
 }
 
 #botao-trapaca {
@@ -103,7 +113,7 @@ img {
 }
 
 #tempo {
-    display: none;
+  display: none;
 }
 
 @media screen and (max-width: 1540px) {
