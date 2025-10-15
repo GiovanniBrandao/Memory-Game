@@ -81,6 +81,17 @@ function saveProfileChanges() {
         alert("Número de celular inválido. Deve conter o DDD + número.");
         return;
     }
+
+    if (!validarEmail(email)) {
+        alert("O formato do e-mail é inválido. Por favor, verifique.");
+        return;
+    }
+
+    const telefoneLimpo = telefone.replace(/\D/g, "");
+    if (telefoneLimpo.length < 10 || telefoneLimpo.length > 11) {
+        alert("O número de telefone parece inválido. Deve conter DDD + número.");
+        return;
+    }
     
     const savedUserString = localStorage.getItem("usuario");
     const savedUser = JSON.parse(savedUserString);

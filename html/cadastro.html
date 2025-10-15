@@ -16,35 +16,42 @@
         <section class="card login-central">
             <h1>CADASTRO</h1>
             <div class="formulario">
-                <form action="jogo.html">
-                    <label for="usuario">Nome Completo</label>
+                <form>
+                    <label for="nome">Nome Completo</label>
                     <input type="text" name="nome" id="nome" placeholder="Digite seu nome" required>
+
                     <label for="usuario">Nome de usuário</label>
                     <input type="text" name="usuario" id="usuario" placeholder="Crie um nome de usuário" required>
-                    <label for="usuario">CPF</label>
-                    <input type="number" name="cpf" id="cpf" placeholder="Digite seu CPF" required>
-                    <label for="usuario">Telefone</label>
-                    <input type="number" name="telefone" id="telefone" placeholder="(xx) xxxxx-xxxx" required>
-                    <label for="usuario">E-mail</label>
-                    <input type="text" name="mail" id="mail" placeholder="Digite seu e-mail" required>
-                    <label for="usuario">Confirmação de E-mail</label>
-                    <input type="text" name="mail-confirm" id="mail-confirm" placeholder="Confirme seu e-mail" required>
+
+                    <label for="cpf">CPF</label>
+                    <input type="text" name="cpf" id="cpf" placeholder="Digite seu CPF" required>
+
+                    <label for="telefone">Telefone</label>
+                    <input type="text" name="telefone" id="telefone" placeholder="(xx) xxxxx-xxxx" required>
+
+                    <label for="mail">E-mail</label>
+                    <input type="email" name="mail" id="mail" placeholder="Digite seu e-mail" required>
+
+                    <label for="mail-confirm">Confirmação de E-mail</label>
+                    <input type="email" name="mail-confirm" id="mail-confirm" placeholder="Confirme seu e-mail" required>
+
                     <label for="senha">Crie uma senha</label>
                     <input type="password" name="senha" id="senha" placeholder="Digite uma senha" required>
-                    <label for="senha">Confirmação de senha</label>
+
+                    <label for="senha-confirm">Confirmação de senha</label>
                     <input type="password" name="senha-confirm" id="senha-confirm" placeholder="Digite a senha novamente" required>
+
                     <button type="submit" class="botao-principal cadastro-button">Cadastrar</button>
                 </form>
             </div>
             <a href="login.html" target="_self">Já tem uma conta?</a>
         </section>
-
     </main>
 
     <footer>
         <p>© 2025 Universidade Estadual de Campinas - Campus Limeira</p>
     </footer>
-  <script src="../JS/cadastro.js"></script>
+    <script src="../JS/cadastro.js"></script>
 </body>
 
 </html>
