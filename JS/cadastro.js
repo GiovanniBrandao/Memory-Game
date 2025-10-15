@@ -1,11 +1,25 @@
 const $ = (elemento) => document.querySelector(elemento);
 
-function validarEmail(email) {
-  const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-  return re.test(String(email).toLowerCase());
+function validateEmail(email) {
+    const commonTlds = [
+        "com", "org", "net", "edu", "gov", "mil", "int", "br", "io", "co", 
+        "info", "biz", "name", "mobi", "app", "dev", "xyz", "club", "online", 
+        "store", "tech", "site", "me", "tv", "us", "uk", "ca", "de", "jp", 
+        "fr", "au", "ru", "ch", "it", "nl", "se", "no", "es", "pt"
+    ];
+
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(String(email).toLowerCase())) {
+        return false;
+    }
+
+    const parts = email.split('.');
+    const tld = parts[parts.length - 1].toLowerCase();
+    
+    return commonTlds.includes(tld);
 }
 
-function validarCPF(cpf) {
+function validateCPF(cpf) {
   cpf = cpf.replace(/[^\d]+/g, '');
   if (cpf == '') return false;
   if (
@@ -35,6 +49,73 @@ function validarCPF(cpf) {
   return true;
 }
 
+function registerUser() {
+    const nome = $("#nome").value;
+    const usuario = $("#usuario").value;
+    const nascimento = $("#nascimento").value;
+    const cpf = $("#cpf").value;
+    const telefone = $("#telefone").value;
+    const email = $("#mail").value;
+    const confirmaEmail = $("#mail-confirm").value;
+    const senha = $("#senha").value;
+    const confirmaSenha = $("#senha-confirm").value;
+
+    if (
+        nome.length === 0 ||
+        usuario.length === 0 ||
+        nascimento.length === 0 ||
+        cpf.length === 0 ||
+        telefone.length === 0 ||
+        email.length === 0 ||
+        senha.length === 0
+    ) {
+        alert("Por favor, preencha todos os campos antes de continuar.");
+        return;
+    }
+
+    if (!validateEmail(email)) {
+        alert("O formato do e-mail é inválido. Por favor, verifique.");
+        return;
+    }
+
+    if (email !== confirmaEmail) {
+        alert("O e-mail e a confirmação de e-mail não conferem.\nPor favor, verifique.");
+        return;
+    }
+
+    if (!validateCPF(cpf)) {
+        alert("O CPF inserido é inválido. Por favor, verifique.");
+        return;
+    }
+
+    const telefoneLimpo = telefone.replace(/\D/g, "");
+    if (telefoneLimpo.length < 10 || telefoneLimpo.length > 11) {
+        alert("O número de telefone parece inválido. Deve conter DDD + número.");
+        return;
+    }
+
+    if (senha !== confirmaSenha) {
+        alert("A senha e a confirmação de senha não conferem.\nPor favor, verifique.");
+        return;
+    }
+
+    const usuarioCadastrado = {
+        nome,
+        usuario,
+        nascimento,
+        cpf: cpf.replace(/\D/g, ''),
+        telefone: telefone.replace(/\D/g, ''),
+        email,
+        senha,
+    };
+
+    const string = JSON.stringify(usuarioCadastrado);
+    localStorage.setItem("usuario", string);
+
+    alert("Cadastro realizado com sucesso!");
+    window.location.href = "./login.html";
+}
+
 $("#cpf").addEventListener("input", (e) => {
     let value = e.target.value.replace(/\D/g, "");
     value = value.replace(/(\d{3})(\d)/, "$1.$2");
@@ -52,70 +133,5 @@ $("#telefone").addEventListener("input", (e) => {
 
 $(".cadastro-button").addEventListener("click", (ev) => {
   ev.preventDefault();
-
-  const nome = $("#nome").value;
-  const usuario = $("#usuario").value;
-  const cpf = $("#cpf").value;
-  const telefone = $("#telefone").value;
-  const email = $("#mail").value;
-  const confirmaEmail = $("#mail-confirm").value;
-  const senha = $("#senha").value;
-  const confirmaSenha = $("#senha-confirm").value;
-
-  if (
-    nome.length === 0 ||
-    usuario.length === 0 ||
-    cpf.length === 0 ||
-    telefone.length === 0 ||
-    email.length === 0 ||
-    senha.length === 0
-  ) {
-    alert("Por favor, preencha todos os campos antes de continuar.");
-    return;
-  }
-
-  if (!validarEmail(email)) {
-    alert("O formato do e-mail é inválido. Por favor, verifique.");
-    return;
-  }
-
-  if (email !== confirmaEmail) {
-    alert("O e-mail e a confirmação de e-mail não conferem.\nPor favor, verifique.");
-    return;
-  }
-  
-  if (!validarCPF(cpf)) {
-      alert("O CPF inserido é inválido. Por favor, verifique.");
-      return;
-  }
-
-  const telefoneLimpo = telefone.replace(/\D/g, "");
-  if (telefoneLimpo.length < 10 || telefoneLimpo.length > 11) {
-    alert("O número de telefone parece inválido. Deve conter DDD + número.");
-    return;
-  }
-
-  if (senha !== confirmaSenha) {
-    alert("A senha e a confirmação de senha não conferem.\nPor favor, verifique.");
-    return;
-  }
-
-  const usuarioCadastrado = {
-    nome,
-    usuario,
-    cpf: cpf.replace(/\D/g, ''),
-    telefone: telefone.replace(/\D/g, ''),
-    email,
-    senha,
-  };
-
-  const string = JSON.stringify(usuarioCadastrado);
-  localStorage.setItem("usuario", string);
-
-  alert("Cadastro realizado com sucesso!");
-  window.location.href = "./login.html";
+  registerUser();
 });
-
-// regex cpf adquirido em https://pt.stackoverflow.com/questions/11045/express%C3%A3o-regular-para-validar-um-campo-que-aceita-cpf-ou-cnpj
-// regex telefone adquirido em https://pt.stackoverflow.com/questions/46672/como-fazer-uma-express%C3%A3o-regular-para-telefone-celular
-// regex email adquirido em https://regexr.com/3e48o

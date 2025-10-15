@@ -67,29 +67,18 @@ function saveProfileChanges() {
     const confirmPassword = $("#confirm-password").value;
 
     if (name.length === 0 || email.length === 0 || phone.length === 0) {
-        alert("Por favora preencha todas as informações pessoais.");
+        alert("Please fill in all personal information fields to save.");
         return;
     }
 
     if (!validateEmail(email)) {
-        alert("Este formato de email é invalido. Por favor cheque novamente");
+        alert("The email format is invalid. Please check it.");
         return;
     }
 
     const cleanPhone = phone.replace(/\D/g, "");
     if (cleanPhone.length < 10 || cleanPhone.length > 11) {
-        alert("Número de celular inválido. Deve conter o DDD + número.");
-        return;
-    }
-
-    if (!validarEmail(email)) {
-        alert("O formato do e-mail é inválido. Por favor, verifique.");
-        return;
-    }
-
-    const telefoneLimpo = telefone.replace(/\D/g, "");
-    if (telefoneLimpo.length < 10 || telefoneLimpo.length > 11) {
-        alert("O número de telefone parece inválido. Deve conter DDD + número.");
+        alert("The phone number seems invalid. It must contain DDD + number.");
         return;
     }
     
@@ -98,19 +87,19 @@ function saveProfileChanges() {
 
     let passwordToSave = savedUser.senha;
 
-    if (newPassword.length > 0 || currentPassword.length > 0) {
+    if (newPassword.length > 0 || currentPassword.length > 0 || confirmPassword.length > 0) {
         if (currentPassword.length === 0 || newPassword.length === 0 || confirmPassword.length === 0) {
-            alert("Para mudar sua senha, você deve preencher todos os campos de senha.");
+            alert("To change your password, you must fill in all three password fields.");
             return;
         }
 
         if (currentPassword !== savedUser.senha) {
-            alert("A senha atual está incorreta.");
+            alert("The current password is incorrect.");
             return;
         }
 
         if (newPassword !== confirmPassword) {
-            alert("A nova senha não corresponde a senha de confirmação.");
+            alert("The new password and confirmation do not match.");
             return;
         }
 
@@ -128,20 +117,24 @@ function saveProfileChanges() {
     const string = JSON.stringify(updatedData);
     localStorage.setItem("usuario", string);
 
-    alert("Perfil atualizado com sucesso!");
+    alert("Profile updated successfully!");
     
     $("#current-password").value = "";
     $("#new-password").value = "";
     $("#confirm-password").value = "";
 }
 
-$("#phone").addEventListener("input", (e) => {
-    e.target.value = formatPhone(e.target.value);
-});
+function initializeApp() {
+    loadProfileData();
 
-document.addEventListener('DOMContentLoaded', loadProfileData);
+    $("#phone").addEventListener("input", (e) => {
+        e.target.value = formatPhone(e.target.value);
+    });
+    
+    $(".botao-salvar").addEventListener("click", (ev) => {
+        ev.preventDefault();
+        saveProfileChanges();
+    });
+}
 
-$(".botao-salvar").addEventListener("click", (ev) => {
-    ev.preventDefault();
-    saveProfileChanges();
-});
+document.addEventListener('DOMContentLoaded', initializeApp);
