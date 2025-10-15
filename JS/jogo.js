@@ -6,6 +6,12 @@ let tamTabuleiro = 16;
 let jogoIniciado = false;
 let jogadas = 0;
 let modoTrapacaAtivo = false;
+let modoDeJogoAtual = 'Normal';
+let cronometroInterval;
+let segundosPassados = 0;
+let paresEncontrados = 0;
+
+
 
 const ICONES_DISPONIVEIS = [
     { name: 'coracao', src: '../Resources/Images/coracao.svg' },
@@ -45,6 +51,8 @@ const ICONES_DISPONIVEIS = [
 const tabuleiro = document.querySelector('.tabuleiro');
 const botaoIniciarDesistir = document.getElementById('botao-iniciar-desistir');
 const exibirJogadas = document.getElementById('jogadas');
+const cronometroNormalDisplay = document.getElementById('cronometro-normal');
+const tempoRegressivoDisplay = document.getElementById('tempo');
 
 botaoIniciarDesistir.addEventListener('click', controlarInicioDesistencia);
 
@@ -70,28 +78,31 @@ function esconderCartas() {
 
 function controlarInicioDesistencia() {
     if (jogoIniciado) {
-        jogoIniciado = false;
+        reiniciarJogo();
         botaoIniciarDesistir.textContent = 'Iniciar jogo';
         alert('Você desistiu do jogo.');
     } else {
         jogoIniciado = true;
         botaoIniciarDesistir.textContent = 'Desistir do jogo';
     }
-    reiniciarJogo();
 }
 
 function ganhou() {
-    const cartasAcertadas = document.querySelectorAll('.card.acertada');
-    if (cartas && cartasAcertadas.length === cartas.length) {
-        alert('Parabéns, você ganhou!');
-        reiniciarJogo();
-    }
+
+    alert('Parabéns, você ganhou!');
+    reiniciarJogo();
 }
+
 
 function virarCarta() {
     if (!jogoIniciado) return;
+
     if (travarTabuleiro) return;
     if (this === cartaUm) return;
+
+    if (!cronometroInterval && modoDeJogoAtual === 'Normal') {
+        iniciarCronometroNormal();
+    }
 
     this.classList.add('virada');
 
@@ -106,19 +117,26 @@ function virarCarta() {
     jogadas++;
     exibirJogadas.textContent = 'Jogadas: ' + jogadas;
 }
-
 function verMatch() {
     const isMatch = cartaUm.dataset.framework === cartaDois.dataset.framework;
     isMatch ? desabilitarCartas() : desvirarCartas();
 }
 
 function reiniciarJogo() {
-    
-    gerarImagens();
 
+    gerarImagens();
     resetarTabuleiro();
+
     jogadas = 0;
     exibirJogadas.textContent = 'Jogadas: ' + jogadas;
+
+    pararCronometroNormal();
+    cronometroInterval = null;
+    cronometroNormalDisplay.textContent = 'Tempo: 00:00';
+
+    jogoIniciado = false;
+    jogadas = 0;
+    paresEncontrados = 0;
 }
 
 function desabilitarCartas() {
@@ -126,8 +144,17 @@ function desabilitarCartas() {
     cartaDois.removeEventListener('click', virarCarta);
     cartaUm.classList.add('acertada');
     cartaDois.classList.add('acertada');
+
+    paresEncontrados++;
+
+    if (paresEncontrados === tamTabuleiro / 2) {
+        pararCronometroNormal();
+        setTimeout(() => {
+            ganhou();
+        }, 500);
+    }
+
     resetarTabuleiro();
-    ganhou();
 }
 
 function desvirarCartas() {
@@ -151,6 +178,31 @@ function embaralharTabuleiro() {
             carta.style.order = posicao;
         });
     }
+}
+
+// CRONOMETRO
+
+// Adicione estas 3 funções em qualquer lugar do jogo.js
+
+function iniciarCronometroNormal() {
+    segundosPassados = 0;
+    cronometroNormalDisplay.textContent = 'Tempo: 00:00';
+
+
+    cronometroInterval = setInterval(() => {
+        segundosPassados++;
+        cronometroNormalDisplay.textContent = `Tempo: ${formatarTempo(segundosPassados)}`;
+    }, 1000);
+}
+
+function pararCronometroNormal() {
+    clearInterval(cronometroInterval);
+}
+
+function formatarTempo(totalSegundos) {
+    const minutos = Math.floor(totalSegundos / 60);
+    const segundos = totalSegundos % 60;
+    return `${String(minutos).padStart(2, '0')}:${String(segundos).padStart(2, '0')}`;
 }
 
 // MODO CONTRA O TEMPO
@@ -214,6 +266,19 @@ function gerarImagens() {
     });
 
     embaralharTabuleiro();
+}
+
+function definirModoDeJogo(modo) {
+    modoDeJogoAtual = modo;
+
+    if (modoDeJogoAtual === 'Normal') {
+        tempoRegressivoDisplay.style.display = 'none';
+        cronometroNormalDisplay.style.display = 'block';
+    } else {
+        tempoRegressivoDisplay.style.display = 'block';
+        cronometroNormalDisplay.style.display = 'none';
+        pararCronometroNormal();
+    }
 }
 
 // Inicializa o jogo quando a página carrega
