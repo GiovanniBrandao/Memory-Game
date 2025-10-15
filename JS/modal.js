@@ -180,6 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let indiceAtual = indicesAtuais[target];
         const maxIndice = opcoes[target].length - 1;
 
+
         if (action === 'anterior') {
             indiceAtual = indiceAtual > 0 ? indiceAtual - 1 : maxIndice;
         } else if (action === 'proximo') {
@@ -192,6 +193,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (target === 'tabuleiro' && typeof window.aplicarTamanhoTabuleiro === 'function') {
             window.aplicarTamanhoTabuleiro(opcoes.tabuleiro[indiceAtual]);
+        }
+
+        if (target === 'jogo' && typeof window.definirModoDeJogo === 'function') {
+            window.definirModoDeJogo(opcoes.jogo[indiceAtual]);
         }
     }
 

@@ -153,9 +153,9 @@ function embaralharTabuleiro() {
     }
 }
 
-// MODO CONTRA O TEMPO (Lógica permanece aqui se houver)
+// MODO CONTRA O TEMPO
 
-// Mudar tamanho do tabuleiro
+// MUDAR TAMANHO DO TABULEIRO
 function aplicarTamanhoTabuleiro(tamanhoString) {
     tabuleiro.classList.remove('grid-2x2', 'grid-6x6', 'grid-8x8');
 
