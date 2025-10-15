@@ -1,129 +1,79 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/png" href="../Resources/Images/videogame.svg">
+        <link rel="stylesheet" href="../CSS/main.css">
+        <link rel="stylesheet" href="../CSS/helpers.css">
+        <link rel="stylesheet" href="../CSS/navbar.css">
+        <link rel="stylesheet" href="../CSS/game.css">
+        <title>Jogo da memória</title>
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="../Resources/Images/videogame.svg">
-    <link rel="stylesheet" href="../CSS/main.css">
-    <link rel="stylesheet" href="../CSS/helpers.css">
-    <link rel="stylesheet" href="../CSS/navbar.css">
-    <link rel="stylesheet" href="../CSS/game.css">
-    <title>Jogo da memória</title>
-</head>
+    <body>
+        <header>
+            <nav aria-label="Navegação principal">
+                <ul>
+                    <li><a href="jogo.html">Jogo</a></li>
+                    <li><a href="historico.html">Histórico</a></li>
+                    <li><a href="ranque.html">Ranque global</a></li>
+                    <li><a href="perfil.html">Perfil</a></li>
+                    <li class="align-right"><a href="login.html">Sair</a></li>
+                </ul>
+            </nav>
+        </header>
 
-<body>
-    <header>
-        <nav aria-label="Navegação principal">
-            <ul>
-                <li><a href="jogo.html">Jogo</a></li>
-                <li><a href="historico.html">Histórico</a></li>
-                <li><a href="ranque.html">Ranque global</a></li>
-                <li><a href="perfil.html">Perfil</a></li>
-                <li class="align-right"><a href="login.html">Sair</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main class="container">
-        <section class="cabecalho">
-            <h1 id="tempo">00:05:00</h1>
-            <h2 id="cronometro-normal">Tempo: 00:00</h2> 
-            <h2 id="jogadas">Jogadas: 0</h2>
-            <button class="botao-principal" id="botao-abrir-configuracoes">Configurações</button>
-            <button class="botao-principal" id="botao-trapaca">Exibir peças ocultas: OFF</button>
-            <button class="botao-principal" id="botao-iniciar-desistir">Iniciar jogo</button>
-        </section>
-
-        <div class="centralizar">
-            <div class="tabuleiro">
-                <div class="card" data-framework="coracao">
-                    <img class="icon" src="../Resources/Images/coracao.svg" alt="">
-                </div>
-                <div class="card" data-framework="coracao">
-                    <img class="icon" src="../Resources/Images/coracao.svg" alt="">
-                </div>
-                <div class="card" data-framework="pet">
-                    <img class="icon" src="../Resources/Images/pet.svg" alt="">
-                </div>
-                <div class="card" data-framework="pet">
-                    <img class="icon" src="../Resources/Images/pet.svg" alt="">
-                </div>
-                <div class="card" data-framework="arvores">
-                    <img class="icon" src="../Resources/Images/arvores.svg" alt="">
-                </div>
-                <div class="card" data-framework="arvores">
-                    <img class="icon" src="../Resources/Images/arvores.svg" alt="">
-                </div>
-                <div class="card"  data-framework="foguete">
-                    <img class="icon" src="../Resources/Images/foguete.svg" alt="">
-                </div>
-                <div class="card"  data-framework="foguete">
-                    <img class="icon" src="../Resources/Images/foguete.svg" alt="">
-                </div>
-                <div class="card" data-framework="chave">
-                    <img class="icon" src="../Resources/Images/chave.svg" alt="">
-                </div>
-                <div class="card" data-framework="chave">
-                    <img class="icon" src="../Resources/Images/chave.svg" alt="">
-                </div>
-                <div class="card"  data-framework="gota">
-                    <img class="icon" src="../Resources/Images/gota.svg" alt="">
-                </div>
-                <div class="card" data-framework="gota">
-                    <img class="icon" src="../Resources/Images/gota.svg" alt="">
-                </div>
-                <div class="card" data-framework="coroa">
-                    <img class="icon" src="../Resources/Images/coroa.svg" alt="">
-                </div>
-                <div class="card" data-framework="coroa">
-                    <img class="icon" src="../Resources/Images/coroa.svg" alt="">
-                </div>
-                <div class="card" data-framework="bola">
-                    <img class="icon" src="../Resources/Images/bola.svg" alt="">
-                </div>
-                <div class="card" data-framework="bola">
-                    <img class="icon" src="../Resources/Images/bola.svg" alt="">
-                </div>
-            </div>
-        </div>
-
-        <dialog id="modal">
-            <section class="modal-conteudo">
-                <div>
-                    <span class="botao-fechar" id="botao-fechar">&times;</span>
-                    <h2>Configurações</h2>
-                </div>
-                
-                <div id="modo-jogo-container">
-                    <dt>Modo de Jogo:</dt>
-                    <dd>
-                        <button class="botao-navegacao" data-action="anterior" data-target="jogo">&lt;</button>
-                        <span id="modo-jogo-valor"></span>
-                        <button class="botao-navegacao" data-action="proximo" data-target="jogo">&gt;</button>
-                    </dd>
-                </div>
-
-                <div id="tabuleiro-container">
-                    <dt>Tabuleiro:</dt>
-                    <dd>
-                        <button class="botao-navegacao" data-action="anterior" data-target="tabuleiro">&lt;</button>
-                        <span id="tabuleiro-valor"></span>
-                        <button class="botao-navegacao" data-action="proximo" data-target="tabuleiro">&gt;</button>
-                    </dd>
-                </div>
-
-                <button class="botao-principal" id="habilitar-trapaca">Modo trapaça: OFF</button>
+        <main class="container">
+            <section class="cabecalho">
+                <h2 id="cronometro">Tempo: 00:00</h2> 
+                <h2 id="jogadas">Jogadas: 0</h2>
+                <button class="botao-principal" id="botao-abrir-configuracoes">Configurações</button>
+                <button class="botao-principal" id="botao-trapaca">Exibir peças ocultas: OFF</button>
+                <button class="botao-principal" id="botao-iniciar-desistir">Iniciar jogo</button>
             </section>
-        </dialog>
-</main>
 
-<footer>
-    <p>© 2025 Universidade Estadual de Campinas - Campus Limeira</p>
-</footer>
+            <div class="centralizar">
+                <div class="tabuleiro"></div>
+            </div>
 
-<script src="../JS/modal.js"></script>
-<script src="../JS/jogo.js"></script> 
-</body>
+            <dialog id="modal">
+                <section class="modal-conteudo">
+                    <div>
+                        <span class="botao-fechar" id="botao-fechar">&times;</span>
+                        <h2>Configurações</h2>
+                    </div>
+                    
+                    <div id="modo-jogo-container">
+                        <dt>Modo de Jogo:</dt>
+                        <dd>
+                            <button class="botao-navegacao" data-action="anterior" data-target="jogo">&lt;</button>
+                            <span id="modo-jogo-valor"></span>
+                            <button class="botao-navegacao" data-action="proximo" data-target="jogo">&gt;</button>
+                        </dd>
+                    </div>
 
+                    <div id="tabuleiro-container">
+                        <dt>Tabuleiro:</dt>
+                        <dd>
+                            <button class="botao-navegacao" data-action="anterior" data-target="tabuleiro">&lt;</button>
+                            <span id="tabuleiro-valor"></span>
+                            <button class="botao-navegacao" data-action="proximo" data-target="tabuleiro">&gt;</button>
+                        </dd>
+                    </div>
+
+                    <button class="botao-principal" id="habilitar-trapaca">Modo trapaça: OFF</button>
+                </section>
+            </dialog>
+    </main>
+
+    <footer>
+        <p>© 2025 Universidade Estadual de Campinas - Campus Limeira</p>
+    </footer>
+
+        <script src="../JS/jogo/modal.js"></script>
+        <script src="../JS/jogo/jogo.js"></script> 
+        <script src="../JS/jogo/modal-acoes.js"></script> 
+        <script src="../JS/jogo/cronometro.js"></script> 
+    </body>
 </html>
