@@ -49,6 +49,7 @@ img {
 .container {
   display: grid;
   grid-template-columns: auto 1fr;
+  gap: 2rem;
 }
 
 .modal-conteudo {
@@ -68,12 +69,30 @@ img {
 
 .tabuleiro.grid-6x6 {
   grid-template-columns: repeat(6, 1fr);
-  width: 630px;
 }
 
 .tabuleiro.grid-8x8 {
   grid-template-columns: repeat(8, 1fr);
-  width: 840px;
+}
+
+.tabuleiro.grid-6x6,
+.tabuleiro.grid-8x8 {
+  width: 100%;
+  gap: 8px;
+}
+
+.tabuleiro.grid-6x6 .card,
+.tabuleiro.grid-8x8 .card {
+  height: auto;
+  width: auto;
+  aspect-ratio: 1 / 1;
+  
+}
+
+.tabuleiro.grid-6x6 img.icon,
+.tabuleiro.grid-8x8 img.icon {
+  height: 90%;
+  width: 90%;
 }
 
 .botao-navegacao {
