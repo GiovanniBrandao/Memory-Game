@@ -87,8 +87,4 @@ function exibirValoresConfiguracao() {
 
     valorModoJogo.textContent = modoAtual;
     valorTabuleiro.textContent = opcoes.tabuleiro[indicesAtuais.tabuleiro];
-
-    if (modoAtual === "Contra o Tempo") {
-        cronometro.textContent = formatarTempo(tempoTotalRegressivo);
-    } 
 }

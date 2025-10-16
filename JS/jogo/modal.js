@@ -17,3 +17,5 @@ modal.addEventListener('click', (event) => {
         modal.close();
     }
 });
+
+// Funções de modal: https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal

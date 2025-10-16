@@ -12,12 +12,35 @@ function formatarTempo(totalSegundos) {
     return "Tempo: " + `${String(minutos).padStart(2, '0')}:${String(segundos).padStart(2, '0')}`;
 }
 
+// OBTER CONTAGEM REGRESSIVA - TEMPO
+function obterTempoInicialPorTamanho(tamanho) {
+
+    switch (tamanho) {
+        case 4: 
+            return 30; 
+        case 36: 
+            return 90; 
+        case 64: 
+            return 120; 
+        default: // 4 x 4
+            return 60;
+    }
+}
+
 // CRONOMETRO - CONTAGEM REGRESSIVA
+
+function configuracoesContronometroRegressivo() {
+    tempoTotalRegressivo = obterTempoInicialPorTamanho(estadoJogo.tamTabuleiro);
+}
 
 function iniciarContagemRegressiva() {
     if (intervaloRegressivo) {
         clearInterval(intervaloRegressivo);
     }
+
+    tempoTotalRegressivo = obterTempoInicialPorTamanho(estadoJogo.tamTabuleiro);
+    
+    cronometro.textContent = formatarTempo(tempoTotalRegressivo);
 
     intervaloRegressivo = setInterval(() => {
         tempoTotalRegressivo--;
@@ -30,6 +53,7 @@ function iniciarContagemRegressiva() {
         cronometro.textContent = formatarTempo(tempoTotalRegressivo);
     }, 1000);
 }
+
 
 // CRONOMETRO - CONTAGEM PROGRESSIVA
 
@@ -45,18 +69,14 @@ function iniciarContagemProgressiva() {
 // PARAR CRONOMETROS
 
 function pararCronometros() {
+    configuracoesContronometroRegressivo();
     pararContagemProgressiva();
     pararContagemRegressiva();
-    
-    let tempo = estadoJogo.modoDeJogoAtual == 'Normal' ? tempoTotalProgressivo : tempoTotalRegressivo;
-    cronometro.textContent = formatarTempo(tempo);
-    botaoIniciarDesistir.textContent = 'Iniciar jogo';
 }
 
 function pararContagemRegressiva() {
     clearInterval(intervaloRegressivo);
     intervaloRegressivo = null;
-    tempoTotalRegressivo = 60;
 }
 
 function pararContagemProgressiva() {

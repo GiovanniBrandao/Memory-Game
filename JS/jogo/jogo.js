@@ -57,12 +57,12 @@ function reiniciarJogo() {
     estadoJogo = { ...ESTADO_INICIAL_DO_JOGO, tamTabuleiro, modoDeJogoAtual };
     
     gerarImagens();
-    
-    exibirJogadas.textContent = `Jogadas: ${estadoJogo.jogadas}`;
-
     pararCronometros();
-    
+
+    exibirJogadas.textContent = `Jogadas: ${estadoJogo.jogadas}`;
     botaoIniciarDesistir.textContent = 'Iniciar Jogo';
+    let tempo = estadoJogo.modoDeJogoAtual == 'Normal' ? tempoTotalProgressivo : obterTempoInicialPorTamanho(estadoJogo.tamTabuleiro);
+    cronometro.textContent = formatarTempo(tempo);
 }
 
 function ganhou() {

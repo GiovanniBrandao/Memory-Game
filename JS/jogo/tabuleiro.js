@@ -31,6 +31,7 @@ function aplicarTamanhoTabuleiro(tamanhoString) {
     tabuleiro.classList.add(config.classe);
     estadoJogo.tamTabuleiro = config.tamanho;
 
+    configuracoesContronometroRegressivo();
     reiniciarJogo();
 }
 
