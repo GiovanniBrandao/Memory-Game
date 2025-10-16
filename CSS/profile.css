@@ -2,6 +2,13 @@
   Tela de perfil
   ======================================= */
 
+hr {
+  border: none;
+  height: 3px;
+  background-color: var(--dominante);
+  margin-bottom: 1.5rem;
+}
+
 .card h1 {
   color: var(--text-color);
   font-size: 2rem;
@@ -20,12 +27,6 @@
 
 .largura-perfil-card {
   width: 40%;
-}
-
-@media screen and (max-width: 1300px) {
-  .largura-perfil-card {
-    width: 60%;
-  }
 }
 
 @media screen and (max-width: 500px) {

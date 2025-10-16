@@ -1,12 +1,9 @@
 /* =======================================
-  Tela de login
-  ======================================= */
+    Tela de login
+    ======================================= */
 
-
-.login-central {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.entrar-button {
+    width: 100%;
 }
 
 .formulario form {
@@ -20,6 +17,12 @@
     margin-bottom: 1.5rem;
 }
 
+.login-central {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .login-central a {
     text-align: center;
     text-decoration: none;
@@ -29,14 +32,10 @@
     text-decoration: underline;
 }
 
-.entrar-button {
-    width: 100%;
-}
-
-@media (max-width: 600px) {
-    .formulario form {
-        padding: 0rem 1rem 1rem 1rem;
-    }
+@media screen and (max-width: 375px) {
+  .formulario form input {
+    width: auto;
+  }
 }
 
 @media (max-width: 460px) {
@@ -47,5 +46,11 @@
     
     .formulario form {
         padding: 0rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .formulario form {
+        padding: 0rem 1rem 1rem 1rem;
     }
 }

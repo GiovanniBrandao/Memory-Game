@@ -1,32 +1,9 @@
+/* =======================================
+  Tela de ranque
+  ======================================= */
 
 section {
   margin-bottom: 2rem;
-}
-
-table {
-  background: var(--base);
-  border-collapse: collapse;
-  margin: 0 auto;
-  width: 100%;
-}
-
-td, th {
-  padding: 12px 8px;
-  text-align: center;
-}
-
-th {
-  background-color: var(--dominante);
-  color: #fff;
-}
-
-tr:hover {
-  border: 2px solid var(--dominante);
-  cursor: pointer;
-}
-
-tr:nth-child(even) {
-  background-color: var(--quaternaria);
 }
 
 .botoes-ranking {
@@ -36,5 +13,5 @@ tr:nth-child(even) {
 }
 
 .tabela-ranking {
-    width: 100%;
+  width: 100%;
 }

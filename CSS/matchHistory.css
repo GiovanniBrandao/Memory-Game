@@ -1,10 +1,6 @@
-.container-historico {
-    margin: 2rem auto;
-    padding: 0 2rem;
-    width: 100%;
-    max-width: 1200px;
-    box-sizing: border-box;
-}
+/* =======================================
+  Tela de historico de partida
+  ======================================= */
 
 h1 {
     text-align: center;
@@ -12,52 +8,24 @@ h1 {
     color: var(--text-color);
 }
 
-.table-container {
-    overflow-x: auto;
-}
-
-table {
-    background: var(--base);
-    border-collapse: collapse;
-    margin: 0 auto;
+.container-historico {
+    margin: 2rem auto;
+    padding: 0 2rem;
     width: 100%;
-    box-shadow: 0 4px 12px var(--box-shadow-color);
-}
-
-td, th {
-    padding: 12px 15px;
-    text-align: center;
-    border-bottom: 1px solid var(--secundaria);
-}
-
-th {
-    background-color: var(--dominante);
-    color: #fff;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    letter-spacing: 0.1rem;
-}
-
-tr:hover {
-    background-color: var(--quaternaria);
-    cursor: pointer;
-}
-
-tr:nth-child(even) {
-    background-color: #f8f8f8;
-}
-
-tr:nth-child(even):hover {
-    background-color: var(--quaternaria);
-}
-
-.vitória {
-    color: #28a745;
-    font-weight: bold;
+    box-sizing: border-box;
 }
 
 .derrota {
     color: #dc3545;
+    font-weight: bold;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+.vitória {
+    color: #28a745;
     font-weight: bold;
 }
 
