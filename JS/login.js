@@ -22,7 +22,6 @@ $(".entrar-button").addEventListener("click", (ev) => {
         return;
     }
 
-    alert("Login realizado com sucesso!");
     window.location.href = "./jogo.html";
 });
 

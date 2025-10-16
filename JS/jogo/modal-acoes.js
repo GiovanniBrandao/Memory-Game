@@ -77,6 +77,11 @@ function navegarConfiguracao(localMudanca, mudanca) {
     }
 }
 
+function definirModoDeJogo(modo) {
+    estadoJogo.modoDeJogoAtual = modo;
+    reiniciarJogo();
+}
+
 function exibirValoresConfiguracao() {
     const modoAtual = opcoes.jogo[indicesAtuais.jogo];
 

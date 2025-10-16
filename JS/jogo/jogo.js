@@ -1,13 +1,18 @@
-let cartas;
-let cartaVirada = false;
-let travarTabuleiro = false;
-let cartaUm, cartaDois;
-let tamTabuleiro = 16;
-let jogoIniciado = false;
-let jogadas = 0;
-let modoTrapacaAtivo = false;
-let modoDeJogoAtual = 'Normal';
-let paresEncontrados = 0;
+const ESTADO_INICIAL_DO_JOGO = {
+    cartaVirada: false,
+    travarTabuleiro: false,
+    cartaUm: null,
+    cartaDois: null,
+    tamTabuleiro: 16,
+    jogoIniciado: false,
+    jogadas: 0,
+    paresEncontrados: 0,
+    modoTrapacaAtivo: false,
+    modoDeJogoAtual: 'Normal',
+};
+
+let estadoJogo = { ...ESTADO_INICIAL_DO_JOGO };
+let cartas; 
 
 const ICONES_DISPONIVEIS = [
     { name: 'coracao', src: '../Resources/Images/coracao.svg' },
@@ -44,32 +49,20 @@ const ICONES_DISPONIVEIS = [
     { name: 'pipa', src: '../Resources/Images/pipa.svg' },
 ];
 
-const tabuleiro = document.querySelector('.tabuleiro');
 const botaoIniciarDesistir = document.getElementById('botao-iniciar-desistir');
 const exibirJogadas = document.getElementById('jogadas');
 
-document.addEventListener('DOMContentLoaded', () => {
-    aplicarTamanhoTabuleiro("4 x 4");
-});
+function reiniciarJogo() {
+    const { tamTabuleiro, modoDeJogoAtual } = estadoJogo;
+    estadoJogo = { ...ESTADO_INICIAL_DO_JOGO, tamTabuleiro, modoDeJogoAtual };
+    
+    gerarImagens();
+    
+    exibirJogadas.textContent = `Jogadas: ${estadoJogo.jogadas}`;
 
-function revelarCartas() {
-    modoTrapacaAtivo = true;
-    const cartasAtuais = document.querySelectorAll('.card');
-    cartasAtuais.forEach(carta => {
-        carta.classList.add('virada');
-        carta.removeEventListener('click', virarCarta);
-    });
-}
-
-function esconderCartas() {
-    modoTrapacaAtivo = false;
-    const cartasAtuais = document.querySelectorAll('.card');
-    cartasAtuais.forEach(carta => {
-        if (!carta.classList.contains('acertada')) {
-            carta.classList.remove('virada');
-        }
-        carta.addEventListener('click', virarCarta);
-    });
+    pararCronometros();
+    
+    botaoIniciarDesistir.textContent = 'Iniciar Jogo';
 }
 
 function ganhou() {
@@ -77,11 +70,44 @@ function ganhou() {
     reiniciarJogo();
 }
 
-function virarCarta() {
-    if (!jogoIniciado) return;
+function desabilitarCartas() {
+    estadoJogo.cartaUm.removeEventListener('click', virarCarta);
+    estadoJogo.cartaDois.removeEventListener('click', virarCarta);
+    estadoJogo.cartaUm.classList.add('acertada');
+    estadoJogo.cartaDois.classList.add('acertada');
 
-    if (travarTabuleiro) return;
-    if (this === cartaUm) return;
+    estadoJogo.paresEncontrados++;
+
+    if (estadoJogo.paresEncontrados === estadoJogo.tamTabuleiro / 2) {
+        pararCronometros();
+        const DELAY_VITORIA = 500; 
+        setTimeout(() => {
+            ganhou();
+        }, DELAY_VITORIA);
+    }
+
+    resetarTabuleiro();
+}
+
+function desvirarCartas() {
+    estadoJogo.travarTabuleiro = true;
+    const DELAY_DESVIRAR = 750;
+    setTimeout(() => {
+        estadoJogo.cartaUm.classList.remove('virada');
+        estadoJogo.cartaDois.classList.remove('virada');
+        resetarTabuleiro();
+    }, DELAY_DESVIRAR);
+}
+
+function verMatch() {
+    const isMatch = estadoJogo.cartaUm.dataset.framework === estadoJogo.cartaDois.dataset.framework;
+    isMatch ? desabilitarCartas() : desvirarCartas();
+}
+
+function virarCarta() {
+    const { jogoIniciado, travarTabuleiro, cartaUm, cartaVirada, modoDeJogoAtual } = estadoJogo;
+    
+    if (!jogoIniciado || travarTabuleiro || this === cartaUm) return;
 
     if (!intervaloProgressivo && modoDeJogoAtual === 'Normal') {
         iniciarContagemProgressiva();
@@ -90,153 +116,60 @@ function virarCarta() {
     this.classList.add('virada');
 
     if (!cartaVirada) {
-        cartaVirada = true;
-        cartaUm = this;
+        estadoJogo.cartaVirada = true;
+        estadoJogo.cartaUm = this;
         return;
     }
 
-    cartaDois = this;
+    estadoJogo.cartaDois = this;
+    
     verMatch();
-    jogadas++;
-    exibirJogadas.textContent = 'Jogadas: ' + jogadas;
+    
+    estadoJogo.jogadas++;
+    exibirJogadas.textContent = `Jogadas: ${estadoJogo.jogadas}`;
 }
 
-function verMatch() {
-    const isMatch = cartaUm.dataset.framework === cartaDois.dataset.framework;
-    isMatch ? desabilitarCartas() : desvirarCartas();
-}
-
-function reiniciarJogo() {
-    gerarImagens();
-    resetarTabuleiro();
-
-    jogadas = 0;
-    exibirJogadas.textContent = 'Jogadas: ' + jogadas;
-
-    pararCronometros();
-
-    jogoIniciado = false;
-    paresEncontrados = 0;
-}
-
-function desabilitarCartas() {
-    cartaUm.removeEventListener('click', virarCarta);
-    cartaDois.removeEventListener('click', virarCarta);
-    cartaUm.classList.add('acertada');
-    cartaDois.classList.add('acertada');
-
-    paresEncontrados++;
-
-    if (paresEncontrados === tamTabuleiro / 2) {
-        pararCronometros();
-        setTimeout(() => {
-            ganhou();
-        }, 500);
-    }
-
-    resetarTabuleiro();
-}
-
-function desvirarCartas() {
-    travarTabuleiro = true;
-    setTimeout(() => {
-        cartaUm.classList.remove('virada');
-        cartaDois.classList.remove('virada');
-        resetarTabuleiro();
-    }, 750);
-}
-
-function resetarTabuleiro() {
-    [cartaVirada, travarTabuleiro] = [false, false];
-    [cartaUm, cartaDois] = [null, null];
-}
-
-function embaralharTabuleiro() {
+function revelarCartas() {
+    if (estadoJogo.modoTrapacaAtivo) return;
+    estadoJogo.modoTrapacaAtivo = true;
+    
     if (cartas) {
         cartas.forEach(carta => {
-            let posicao = Math.floor(Math.random() * tamTabuleiro);
-            carta.style.order = posicao;
+            carta.classList.add('virada');
+            carta.removeEventListener('click', virarCarta);
         });
     }
 }
 
-// TAMANHO DO TABULEIRO
-function aplicarTamanhoTabuleiro(tamanhoString) {
-    tabuleiro.classList.remove('grid-2x2', 'grid-6x6', 'grid-8x8');
+function esconderCartas() {
+    if (!estadoJogo.modoTrapacaAtivo) return; 
 
-    let novoTamTabuleiro;
-
-    // 1. Defina o novo tamanho
-    if (tamanhoString === "2 x 2") {
-        tabuleiro.classList.add('grid-2x2');
-        novoTamTabuleiro = 4;
-    } else if (tamanhoString === "6 x 6") {
-        tabuleiro.classList.add('grid-6x6');
-        novoTamTabuleiro = 36;
-    } else if (tamanhoString === "8 x 8") {
-        tabuleiro.classList.add('grid-8x8');
-        novoTamTabuleiro = 64;
-    } else { // Padrão 4x4
-        novoTamTabuleiro = 16;
-    }
-
-    // 2. Atualize a variável global
-    tamTabuleiro = novoTamTabuleiro;
-
-    // 3. Gere o tabuleiro com o novo tamanho
-    gerarImagens();
-
-    if (jogoIniciado) {
-        reiniciarJogo();
-    }
-}
-
-function gerarImagens() {
-    const numPares = tamTabuleiro / 2;
-    const iconesUsados = ICONES_DISPONIVEIS.slice(0, numPares);
-    let listaCartas = [...iconesUsados, ...iconesUsados];
-
-    tabuleiro.innerHTML = ''; // Limpa o tabuleiro completamente
-
-    listaCartas.forEach(icone => {
-        const cardElement = document.createElement('div');
-        cardElement.classList.add('card');
-        cardElement.setAttribute('data-framework', icone.name);
-
-        const imgElement = document.createElement('img');
-        imgElement.classList.add('icon');
-        imgElement.setAttribute('src', icone.src);
-        imgElement.setAttribute('alt', icone.name);
-
-        cardElement.appendChild(imgElement);
-        tabuleiro.appendChild(cardElement);
-    });
-
-    cartas = document.querySelectorAll('.card');
-
-    cartas.forEach(carta => {
-        carta.addEventListener('click', virarCarta);
-    });
-
-    embaralharTabuleiro();
-}
-
-function definirModoDeJogo(modo) {
-    modoDeJogoAtual = modo;
-
-    reiniciarJogo();
-}
+    estadoJogo.modoTrapacaAtivo = false;
     
+    if (cartas) {
+        cartas.forEach(carta => {
+            if (!carta.classList.contains('acertada')) {
+                carta.classList.remove('virada');
+            }
+            carta.addEventListener('click', virarCarta); 
+        });
+    }
+    resetarTabuleiro(); 
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    aplicarTamanhoTabuleiro("4 x 4"); 
+});
+
 botaoIniciarDesistir.addEventListener('click', function () {
-    if (jogoIniciado) {
+    if (estadoJogo.jogoIniciado) {
         reiniciarJogo();
-        botaoIniciarDesistir.textContent = 'Iniciar Jogo';
         alert('Você desistiu do jogo.');
     } else {
-        jogoIniciado = true;
-        botaoIniciarDesistir.textContent = 'Desistir do Jogo';
+        estadoJogo.jogoIniciado = true;
+        this.textContent = 'Desistir do Jogo'; 
         
-        if (modoDeJogoAtual === 'Contra o Tempo') {
+        if (estadoJogo.modoDeJogoAtual === 'Contra o Tempo') {
             iniciarContagemRegressiva();
         }
     }

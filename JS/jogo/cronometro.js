@@ -48,17 +48,19 @@ function pararCronometros() {
     pararContagemProgressiva();
     pararContagemRegressiva();
     
-    let tempo = modoDeJogoAtual == 'Normal' ? tempoTotalProgressivo : tempoTotalRegressivo;
+    let tempo = estadoJogo.modoDeJogoAtual == 'Normal' ? tempoTotalProgressivo : tempoTotalRegressivo;
     cronometro.textContent = formatarTempo(tempo);
     botaoIniciarDesistir.textContent = 'Iniciar jogo';
 }
 
 function pararContagemRegressiva() {
     clearInterval(intervaloRegressivo);
+    intervaloRegressivo = null;
     tempoTotalRegressivo = 60;
 }
 
 function pararContagemProgressiva() {
     clearInterval(intervaloProgressivo);
+    intervaloProgressivo = null;
     tempoTotalProgressivo = 0;
 }
