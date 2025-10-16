@@ -53,7 +53,7 @@ function loadProfileData() {
         $("#email").value = user.email;
         $("#phone").value = formatPhone(user.telefone);
     } else {
-        alert("User not found. Please log in again.");
+        alert("Usuário não encontrado. Por favor faça login novamente");
         window.location.href = "./login.html";
     }
 }
@@ -67,18 +67,18 @@ function saveProfileChanges() {
     const confirmPassword = $("#confirm-password").value;
 
     if (name.length === 0 || email.length === 0 || phone.length === 0) {
-        alert("Please fill in all personal information fields to save.");
+        alert("Por favor preencha todas as informações pessoais para salvar.");
         return;
     }
 
     if (!validateEmail(email)) {
-        alert("The email format is invalid. Please check it.");
+        alert("Formato de email inválido");
         return;
     }
 
     const cleanPhone = phone.replace(/\D/g, "");
     if (cleanPhone.length < 10 || cleanPhone.length > 11) {
-        alert("The phone number seems invalid. It must contain DDD + number.");
+        alert("Formato de telefone inválido.");
         return;
     }
     
@@ -89,17 +89,17 @@ function saveProfileChanges() {
 
     if (newPassword.length > 0 || currentPassword.length > 0 || confirmPassword.length > 0) {
         if (currentPassword.length === 0 || newPassword.length === 0 || confirmPassword.length === 0) {
-            alert("To change your password, you must fill in all three password fields.");
+            alert("Para mudar sua senha, preencha todos os campos");
             return;
         }
 
         if (currentPassword !== savedUser.senha) {
-            alert("The current password is incorrect.");
+            alert("A senha atual está incorreta.");
             return;
         }
 
         if (newPassword !== confirmPassword) {
-            alert("The new password and confirmation do not match.");
+            alert("A nova senha e a confirmação não são iguais.");
             return;
         }
 
@@ -117,7 +117,7 @@ function saveProfileChanges() {
     const string = JSON.stringify(updatedData);
     localStorage.setItem("usuario", string);
 
-    alert("Profile updated successfully!");
+    alert("Perfil atualizado com sucesso!");
     
     $("#current-password").value = "";
     $("#new-password").value = "";
