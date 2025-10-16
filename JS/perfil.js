@@ -138,3 +138,10 @@ function initializeApp() {
 }
 
 document.addEventListener('DOMContentLoaded', initializeApp);
+
+/*
+
+Validação de email vista em: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/String/split
+Verificação de domínio na lista de domínios: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/includes
+
+*/
