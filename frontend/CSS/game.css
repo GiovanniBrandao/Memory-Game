@@ -95,6 +95,11 @@ img {
   width: 90%;
 }
 
+.tabuleiro.grid-2x2 {
+  grid-template-columns: repeat(2, 1fr);
+  margin: 0 auto; 
+}
+
 .botao-navegacao {
   border: none;
   background-color: transparent;

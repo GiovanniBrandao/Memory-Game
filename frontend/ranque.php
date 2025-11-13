@@ -25,10 +25,10 @@
     <main class="centralizar" style="flex-direction: column;"> 
 
         <div id="botoes-ranking" class="botoes-ranking">
-            <button class="botao-principal" data-tamanho="2x2">2x2</button>
-            <button class="botao-principal" data-tamanho="4x4">4x4</button>
-            <button class="botao-principal" data-tamanho="6x6">6x6</button>
-            <button class="botao-principal" data-tamanho="8x8">8x8</button>
+            <button class="botao-principal" data-tamanho="2 x 2">2 x 2</button>
+            <button class="botao-principal" data-tamanho="4 x 4">4 x 4</button>
+            <button class="botao-principal" data-tamanho="6 x 6">6 x 6</button>
+            <button class="botao-principal" data-tamanho="8 x 8">8 x 8</button>
         </div>
 
         <section class="tabela-ranking">

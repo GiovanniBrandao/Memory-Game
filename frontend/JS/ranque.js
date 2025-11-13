@@ -64,5 +64,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    carregarRanking('8x8'); 
+    carregarRanking('4 x 4'); 
 });

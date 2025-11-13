@@ -87,7 +87,7 @@ function pararContagemRegressiva() {
 function pararContagemProgressiva() {
     clearInterval(intervaloProgressivo);
     intervaloProgressivo = null;
-    tempoTotalProgressivo = 0;
+    // tempoTotalProgressivo = 0;
 }
 
 function obterTempoGastoFinal() {

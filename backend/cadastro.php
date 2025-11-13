@@ -1,4 +1,6 @@
 <?php 
+    header('Content-Type: application/json');
+
     function validation($conn, $username, $email) {
         $sql_check = "SELECT 1 
                     FROM jogador 
