@@ -1,0 +1,99 @@
+Enunciado Geral
+O Jogo da Memória consiste em um jogo de tabuleiro onde são dispostos pares de peças (ou figuras) em uma estrutura bidimensional (grid) com M linhas e N colunas (Figura 1). Inicialmente, todas as peças são colocadas com suas faces viradas para baixo (ocultas) e, em sua proposta inicial, o jogo pode ser disputado tanto individualmente como por dois ou mais oponentes. A origem do jogo da Memória é incerta, mas alguns autores o atribuem a Christopher Louis Pelman (cuidado, PDF), o que explica tal jogo também ser conhecido, em inglês, pelo termo Pelmanism.
+
+
+
+Figura 1 - Exemplo de um tabuleiro de Jogo da Memória, de dimensão 4 x 4, com 7 peças reveladas e 9 peças ocultas.
+
+Nas partidas entre múltiplos oponentes, cada jogador, em sua vez, revela duas peças e, caso elas sejam iguais, o jogador acumula um ponto e as peças reveladas permanecem assim. Caso as peças sejam diferentes, o jogador não acumula nenhum ponto e as peças voltam a ficar ocultas. Durante o jogo, os oponentes jogam alternadamente (uma jogada para cada) e, quando todas as peças forem reveladas, ganha o oponente que tiver acumulado mais pontos. Já na variante em que se joga individualmente (single player), o número de pontos acumulado por um jogador, ao final de uma partida, consiste no total de jogadas necessárias até que todo o tabuleiro tenha sido revelado. Nesse caso, o objetivo é fazer o menor número de possível de pontos (jogadas).
+
+No Projeto Final da disciplina SI401, deverá ser desenvolvida e implementada uma plataforma online, utilizando as ferramentas estudadas na disciplina (HTML, CSS, JavaScript e PHP), que permita que um jogador cadastrado (usuário) jogue partidas de uma versão específica do Jogo da Memória. A versão do jogo a ser implementada segue regras parecidas com as da versão clássica single player do jogo, mas deve atender às seguintes especificações:
+
+O usuário deverá poder escolher as dimensões do tabuleiro (quadrado, mínimo 2x2 e máximo 8x8, sempre com um número par de peças) e o modo de jogo.
+O usuário também poderá escolher entre duas modalidades de jogo: "Clássica" e "Contra o Tempo".
+A modalidade "Clássica" segue o que já foi descrito anteriormente, ou seja, a cada jogada, o jogador escolhe duas peças a serem reveladas e, se tais peças forem iguais, elas permanecem reveladas. Caso contrário, elas voltam a ficar ocultas e o jogador passa para a jogada seguinte. Ao final, o número de pontos acumulado por um jogador corresponde ao total de jogadas necessárias até que todo o tabuleiro tenha sido revelado (quanto menor, melhor).
+Já na modalidade "Contra o Tempo" a dinâmica é similar à "Clássica", com a adição de um contador de tempo (timer), sendo que o jogador deverá encerrar a partida antes que tal contador chegue a zero. Caso ele não consiga, a partida contará como uma "derrota" em seu histórico. O tempo de cada partida do modo "Contra o Tempo" deverá ser definido em função do tamanho do tabuleiro.
+O sistema deverá manter um histórico com o resultado de todas as partidas disputadas pelo usuário. Este histórico deve conter as seguintes informações sobre cada partida jogada: nome do jogador, dimensões do tabuleiro utilizado na partida, modalidade da partida, tempo gasto até a vitória ou derrota (contado a partir do primeiro clique no tabuleiro), número de jogadas, resultado da partida (vitória ou derrota) e data/hora em que a partida foi disputada.
+Para facilitar a correção (e o desenvolvimento) deverão ser adicionados dois botões que, ao serem clicados, ativam o modo "Trapaça", modificando o que é exibido no tabuleiro:
+Um deles deve mostrar todas as peças ainda ocultas no tabuleiro, sem interferir na execução do jogo;
+O outro botão deve recuperar a exibição normal do jogo, mantendo as peças já reveladas e ocultando as ainda fechadas.
+A qualquer momento de uma partida o usuário pode optar por desistir do jogo, retornando à tela inicial de escolha de configurações (dimensões do tabuleiro, modo de jogo etc.).
+A implementação do Jogo da Memória deverá ser toda feita em JavaScript, para execução no front-end. No entanto, a plataforma online do jogo também deverá contar com um módulo em back-end, responsável por gerenciar a autenticação dos jogadores, o armazenamento e recuperação dos resultados de cada partida jogada e a elaboração de um ranking dos 10 melhores jogadores de Jogo da Memória cadastrados na plataforma. Mais informações sobre o front-end e back-end são dadas a seguir.
+
+Front-end
+
+A primeira tela a ser exibida para qualquer usuário que acesse o sistema deve conter dois campos de um formulário para autenticação: um para o usuário e o outro para a senha (além de um botão para enviar os dados fornecidos). Além disso, deverá haver um link para uma página de cadastro no sistema, caso o usuário não possua usuário e senha.
+
+Na página de cadastro o sistema deverá solicitar os seguintes dados de um novo jogador: nome completo, data de nascimento, CPF, telefone e e-mail, além do username (único) e da senha para acesso ao sistema. Estes dados deverão ser mantidos na plataforma enquanto a conta do jogador estiver ativa.
+
+Uma vez autenticado no sistema, o jogador deverá ser redirecionado para uma página que contenha o Jogo da Memória implementado em JavaScript. Além do jogo em si, nessa página o usuário deverá visualizar pelo menos as seguintes informações:
+
+Tempo da partida até o momento (caso iniciada), número de jogadas, configuração do tabuleiro, modalidade de partida e, no caso do modo "Contra o Tempo", o tempo restante para conclusão da partida.
+Histórico com os resultados de todas as partidas jogadas anteriormente por aquele jogador. Tal histórico deve exibir as seguintes informações: nome do jogador, dimensões do tabuleiro utilizado na partida, modalidade da partida, tempo gasto até a vitória ou derrota (contado a partir do primeiro clique no campo), número de jogadas realizadas na partida, resultado da partida (vitória ou derrota) e a data/hora em que a partida foi disputada.
+Botões de ativação/desativação do modo Trapaça.
+Na página que contém o Jogo da Memória o usuário também deverá ter acesso a hyperlinks que o levam a duas outras páginas do sistema, além de uma opção para desconectar e retornar à página de login: uma página com o ranking global de jogadores e outra onde ele poderá editar suas informações pessoais. Nesta página de edição de informações pessoais, os campos data de nascimento, CPF e username NÃO poderão ser alterados.
+
+Por fim, na página de ranking global de jogadores o sistema deverá mostrar os usernames e dados da partida para 10 jogadores, obtidas dentre todos os jogadores registrados no sistema. A escolha destas partidas deverá ser feita em função do tamanho do tabuleiro e tempo de partida: deverão ser exibidos os dados das partidas disputadas (e vencidas) nos 10 maiores tabuleiros. Caso mais de um jogador tenha disputado uma partida com as mesmas dimensões de tabuleiro, deverão ser exibidos os dados do jogador que venceu a partida em menor número de jogadas (pontos). 
+Ao final de cada partida, o sistema deverá permitir ao usuário escolher se ele deseja ou não iniciar uma nova partida.
+
+ATENÇÃO 1: todas as páginas exibidas no front-end deverão seguir o padrão mais recente de HTML e contar com folhas de estilo prioritariamente externas, escritas em CSS. Tanto os documentos HTML enviados pela plataforma ao navegador dos usuários quanto as folhas de estilo devem ter sido validadas (e aprovadas) nos validadores de HTML e CSS do W3C:
+
+Validador de HTML: https://validator.w3.org/
+Validador de CSS: https://jigsaw.w3.org/css-validator/
+ATENÇÃO 2: NÃO é recomendado o uso de templates CSS neste trabalho, mas, caso o grupo queira usá-los, é mandatório indicar isto explicitamente no site e fornecer um link para a(s) fonte(s).
+
+ATENÇÃO 3: para o desenvolvimento do jogo, será necessário estudar o funcionamento de eventos temporizados em JavaScript.
+
+Back-end
+
+Como já mencionado, o back-end da plataforma do Jogo da Memória será responsável por gerenciar a autenticação dos jogadores, o armazenamento e recuperação dos resultados de cada partida jogada e a elaboração do ranking de jogadores cadastrados. Toda a implementação do back-end deverá ser feita em PHP e os dados armazenados em um Sistema Gerenciador de Bancos de Dados (SGBD) MySQL ou MariaDB.
+
+Além do armazenamento persistente dos dados e sua recuperação sempre que necessário, caberá à implementação do back-end garantir que apenas usuários autenticados tenham acesso às páginas da plataforma. Caso um usuário não esteja autenticado, ele NÃO poderá acessar nenhuma página do sistema exceto as páginas de login (página inicial) e de cadastramento de um novo usuário. Para isso, deverá ser utilizado o mecanismo de sessões de PHP.
+
+As tabelas MySQL/MariaDB em que ficarão armazenados os dados tantos das partidas quanto de usuários do sistema devem ser definidas pelo grupo. A partir dessas definições, deverá ser entregue um script PHP (separado do projeto principal) para criação das tabelas necessárias para o correto funcionamento do sistema, além de um arquivo-texto com instruções para sua utilização. Formas alternativas para criação das tabelas necessárias também são permitidas, desde que estejam acompanhadas de instruções claras de utilização.
+
+ATENÇÃO: NÃO é permitido o uso de frameworks PHP.
+
+Regras para o Trabalho
+
+Esse Projeto deverá ser desenvolvido em grupos de 4 a 5 alunos.
+
+Como consta no Plano de Ensino da Disciplina, a nota desse Projeto corresponderá a 75% da média de cada aluno.
+
+Ao longo do semestre, cada grupo deverá entregar três parciais do Projeto, correspondentes a versões incrementais do sistema (os pesos de cada parcial na nota final do Projeto estão no Plano de Ensino da Disciplina). Tais parciais serão:
+
+Parcial 1: documentos HTML correspondentes a versões não-funcionais das páginas previstas para o jogo, já com todas as definições de estilo via CSS. Nessa versão preliminar do sistema, todas as páginas deverão estar presentes, já com a formatação final e com hyperlinks que levem o usuário às demais páginas do sistema. No entanto, as funcionalidades de controle de acesso, do jogo em si, e o armazenamento e recuperação de informações não devem estar presentes. Substitua os campos das páginas que dependem dos aspectos dinâmicos do sistema por imagens ou valores estáticos (ex.: uma figura que corresponda ao tabuleiro e valores fixos nas tabelas de ranking). A ordem de navegação entre as páginas já deve ser a final.
+
+Parcial 2: nesta segunda versão do sistema, toda a dinâmica do Jogo da Memória deverá estar implementada e funcional, mas a plataforma ainda não terá nenhuma funcionalidade relacionada ao back-end. Ou seja, o usuário poderá jogar quantas partidas quiser, mas o sistema não contará com o controle de acesso ou persistência de dados.
+
+Parcial 3: corresponde ao incremento final do sistema, com a implementação de todas as funcionalidades relacionadas ao back-end. Espera-se que essa entrega corresponda à versão final do sistema, com as funcionalidades de front-end e back-end, mencionadas anteriormente, devidamente integradas e testadas.
+
+A entrega de cada parcial do Projeto será composta por dois arquivos:
+
+Um arquivo .ZIP contendo todos os arquivos necessários para configuração e execução do sistema (.html, .js, .php, .css, imagens etc.). É importante manter, no arquivo .ZIP, a estrutura de diretórios necessária para execução do jogo e incluir um arquivo TXT ou PDF que contenha:
+
+As instruções necessárias para configuração e uso do sistema;
+
+O link para um vídeo de apresentação da parcial entregue pelo grupo.
+
+Um arquivo .XLSX contendo o detalhamento da contribuição de cada membro do grupo. Este arquivo corresponde ao modelo disponível aqui, preenchido pelo grupo.
+
+Cada parcial entregue deverá ser acompanhada de um vídeo, de no máximo 10 minutos, em que todos os membros do grupo apresentam o que foi desenvolvido naquela parcial. Espera-se uma apresentação não apenas do funcionamento do sistema, mas da estrutura interna do que foi desenvolvido naquela parcial, destacando a contribuição de cada membro do grupo.
+
+O foco de cada vídeo deve ser no conteúdo da parcial que está sendo entregue (não é necessário reexplicar o que já foi apresentado em vídeos anteriores).
+
+O vídeo deve ser hospedado em algum serviço gratuito (ex.: YouTube) e o link fornecido junto com a entrega.
+
+Todo o código-fonte em JavaScript deve estar contido em arquivos .JS externos (exceto as chamadas às funções implementadas, que podem estar no HTML conforme a necessidade).
+
+Todas as definições de formatação geral das páginas deverão estar contidas em folhas de estilo CSS prioritariamente externas. É obrigatório o uso de folhas de estilo em todas as páginas.
+
+Todos os documentos HTML gerados deverão seguir a versão mais recente do padrão.
+
+Tanto os arquivos HTML quando as folhas de estilo CSS deverão ser validados no site do W3C.
+
+Cópias de outros grupos ou da internet serão penalizadas como descrito no Plano de Ensino da Disciplina.
+
+Não serão aceitos trabalhos entregues fora do prazo.
+
+Caso o arquivo .ZIP exceda o tamanho máximo permitido pelo Moodle (10 MB), o grupo poderá armazenar os arquivos externos em repositórios online (como Google Drive ou OneDrive). Nestes casos, o arquivo de instruções deverá indicar explicitamente como tais arquivos devem ser obtidos e onde eles devem ser salvos para o correto funcionamento do sistema.

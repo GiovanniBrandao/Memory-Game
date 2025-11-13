@@ -1,0 +1,79 @@
+<?php
+    session_start();
+    
+    if(!isset($_SESSION['id_jogador'])){
+        header('Location: ../front/login.php');
+    }
+?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../Resources/Images/videogame.svg">
+    <link rel="stylesheet" href="../CSS/main.css">
+    <link rel="stylesheet" href="../CSS/helpers.css">
+    <link rel="stylesheet" href="../CSS/navbar.css">
+    <link rel="stylesheet" href="../CSS/profile.css">
+    <title>Perfil</title>
+</head>
+<body>
+    
+    <?php include "navbar.php"; ?>
+
+    <main class="centralizar">
+        <section class="card largura-perfil-card">
+            <h1>Editar Informações</h1>
+            <form>
+                <div class="celula">
+                    <label for="name">Nome Completo</label>
+                    <input type="text" id="name" name="name" placeholder="Nome Completo">
+                </div>
+                <div class="celula">
+                    <label for="username">Nome de Usuário</label>
+                    <input type="text" id="username" name="username" disabled>
+                </div>
+                <div class="celula">
+                    <label for="birthdate">Data de Nascimento</label>
+                    <input type="date" id="birthdate" name="birthdate" disabled>
+                </div>
+                <div class="celula">
+                    <label for="cpf">CPF</label>
+                    <input type="text" id="cpf" name="cpf" disabled>
+                </div>
+                <div class="celula">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="usuario@email.com">
+                </div>
+                <div class="celula">
+                    <label for="phone">Telefone</label>
+                    <input type="tel" id="phone" name="phone" placeholder="(XX) XXXXX-XXXX">
+                </div>
+
+                <hr>
+
+                <div class="celula">
+                    <label for="current-password">Senha Atual</label>
+                    <input type="password" id="current-password" name="current-password" placeholder="Digite sua senha atual">
+                </div>
+                <div class="celula">
+                    <label for="new-password">Nova Senha</label>
+                    <input type="password" id="new-password" name="new-password" placeholder="Digite a nova senha">
+                </div>
+                <div class="celula">
+                    <label for="confirm-password">Confirmar Nova Senha</label>
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirme a nova senha">
+                </div>
+
+                <button type="submit" class="botao-principal botao-salvar">Salvar Alterações</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Universidade Estadual de Campinas - Campus Limeira</p>
+    </footer>
+    <script src="../JS/perfil.js"></script>
+</body>
+</html>

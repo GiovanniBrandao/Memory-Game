@@ -1,4 +1,5 @@
 const $ = (elemento) => document.querySelector(elemento);
+let verificado = false;
 
 function validateEmail(email) {
     const commonTlds = [
@@ -49,7 +50,9 @@ function validateCPF(cpf) {
   return true;
 }
 
-function registerUser() {
+function verifyUser() {
+    verificado = false;
+
     const nome = $("#nome").value;
     const usuario = $("#usuario").value;
     const nascimento = $("#nascimento").value;
@@ -99,21 +102,8 @@ function registerUser() {
         return;
     }
 
-    const usuarioCadastrado = {
-        nome,
-        usuario,
-        nascimento,
-        cpf: cpf.replace(/\D/g, ''),
-        telefone: telefone.replace(/\D/g, ''),
-        email,
-        senha,
-    };
-
-    const string = JSON.stringify(usuarioCadastrado);
-    localStorage.setItem("usuario", string);
-
-    alert("Cadastro realizado com sucesso!");
-    window.location.href = "./login.html";
+    verificado = true;
+    $("#btn_cadastrar").click();
 }
 
 $("#cpf").addEventListener("input", (e) => {
@@ -131,7 +121,9 @@ $("#telefone").addEventListener("input", (e) => {
     e.target.value = value;
 });
 
-$(".cadastro-button").addEventListener("click", (ev) => {
-  ev.preventDefault();
-  registerUser();
+$("#btn_cadastrar").addEventListener("click", (ev) => {
+    if(!verificado){
+        ev.preventDefault();
+        verifyUser();
+    }
 });

@@ -65,9 +65,62 @@ function reiniciarJogo() {
     cronometro.textContent = formatarTempo(tempo);
 }
 
-function ganhou() {
-    alert('Parabéns, você ganhou!');
-    reiniciarJogo();
+function finalizarJogo(resultado){
+
+    let span_close = document.getElementById("res-submit");
+    span_close.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    let txt_resultado = document.getElementById("res-modal-text")
+
+    switch(resultado){
+        case "vitoria":
+            txt_resultado.innerHTML = "Parabéns, você completou o jogo"
+            console.log("vitoria");
+            break;
+        case "desistencia":
+            txt_resultado.innerHTML = "Partida encerrada por desistencia"
+            console.log("desistencia");
+            break;
+        case "derrota":
+            txt_resultado.innerHTML = "Acabou o tempo, você perdeu"
+            console.log("derrota");
+            break;
+    }
+
+    let input_dimensoes = document.getElementById("res_dimensoes");
+    let input_modalidade = document.getElementById("res_modalidade");
+    let input_tempo_gasto = document.getElementById("res_tempo_gasto");
+    let input_num_jogadas = document.getElementById("res_num_jogadas");
+    let input_resultado = document.getElementById("res_resultado");
+    let input_data_hora = document.getElementById("res_data_hora");
+
+    let calc_tempo_gasto = 0;
+    if (estadoJogo.modoDeJogoAtual === "Normal"){
+        calc_tempo_gasto = tempoTotalProgressivo;
+    }
+    else{
+        calc_tempo_gasto = obterTempoInicialPorTamanho(estadoJogo.tamTabuleiro) - tempoTotalRegressivo;
+    }
+
+    let calc_dimensoes = "";
+    switch(estadoJogo.tamTabuleiro){
+        case 4: calc_dimensoes  = "2x2"; break;
+        case 16: calc_dimensoes = "4x4"; break;
+        case 36: calc_dimensoes = "6x6"; break;
+        case 64: calc_dimensoes = "8x8"; break;
+    }
+
+    input_dimensoes.value =  calc_dimensoes;
+    input_modalidade.value = estadoJogo.modoDeJogoAtual === "Normal" ? "classico" : "tempo";
+    input_tempo_gasto.value = calc_tempo_gasto;
+    input_num_jogadas.value = estadoJogo.jogadas;
+    input_resultado.value = resultado;
+    input_data_hora.value = (new Date()).toISOString().slice(0, 19).replace('T', ' ');
+
+    let modal = document.getElementById("res-modal");
+    modal.style.display = "block";
 }
 
 function desabilitarCartas() {
@@ -79,11 +132,8 @@ function desabilitarCartas() {
     estadoJogo.paresEncontrados++;
 
     if (estadoJogo.paresEncontrados === estadoJogo.tamTabuleiro / 2) {
+        finalizarJogo("vitoria");
         pararCronometros();
-        const DELAY_VITORIA = 500; 
-        setTimeout(() => {
-            ganhou();
-        }, DELAY_VITORIA);
     }
 
     resetarTabuleiro();
@@ -163,8 +213,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 botaoIniciarDesistir.addEventListener('click', function () {
     if (estadoJogo.jogoIniciado) {
+        finalizarJogo("desistencia")
         reiniciarJogo();
-        alert('Você desistiu do jogo.');
     } else {
         estadoJogo.jogoIniciado = true;
         this.textContent = 'Desistir do Jogo'; 

@@ -46,7 +46,7 @@ function iniciarContagemRegressiva() {
         tempoTotalRegressivo--;
 
         if (tempoTotalRegressivo <= 0) {
-            alert('O tempo acabou!');
+            finalizarJogo("derrota");
             reiniciarJogo();
         }
 

@@ -1,0 +1,54 @@
+<?php 
+    session_start();
+    
+    if(isset($_SESSION['id_jogador'])){
+        header('Location: ../front/jogo.php');
+    }
+?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../Resources/Images/videogame.svg">
+    <link rel="stylesheet" href="../CSS/main.css">
+    <link rel="stylesheet" href="../CSS/helpers.css">
+    <link rel="stylesheet" href="../CSS/login.css">
+    <title>Autenticação</title>
+</head>
+
+<body>
+    <main class="centralizar">
+        <section class="card login-central">
+            <h1>BEM VINDO AO JOGO DA MEMÓRIA</h1>
+            <div class="formulario">
+                <form action="../back/login.php" method="POST">
+                    <label for="usuario">Usuário</label>
+                    <input type="text" name="usuario" id="usuario" placeholder="Nome de usuário" required>
+                    <label for="senha">Senha</label>
+                    <input type="password" name="senha" id="senha" placeholder="Digite a senha" required>
+                    <button type="submit" class="botao-principal entrar-button">Entrar</button>
+                </form>
+            </div>
+            <a href="cadastro.php" target="_self">Ainda não é cadastrado?</a>
+        </section>
+        
+        <?php 
+            session_start();
+            if (isset($_SESSION['login_fail'])){
+                echo "<script>
+                        alert('Usuário ou senha inválidos!');  
+                    </script>
+                ";
+            }
+        ?>
+    </main>
+
+    <footer>
+        <p>© 2025 Universidade Estadual de Campinas - Campus Limeira</p>
+    </footer>
+</body>
+
+</html>

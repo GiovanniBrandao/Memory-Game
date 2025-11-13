@@ -15,8 +15,18 @@ h1 {
     box-sizing: border-box;
 }
 
+.vitoria {
+    color: #28a745;
+    font-weight: bold;
+}
+
 .derrota {
     color: #dc3545;
+    font-weight: bold;
+}
+
+.desistencia{
+    color: #cf5d00;
     font-weight: bold;
 }
 
@@ -24,10 +34,7 @@ h1 {
     overflow-x: auto;
 }
 
-.vitória {
-    color: #28a745;
-    font-weight: bold;
-}
+
 
 @media screen and (max-width: 768px) {
     .container-historico {
