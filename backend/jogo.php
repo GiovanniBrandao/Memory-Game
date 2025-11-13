@@ -1,4 +1,5 @@
 <?php 
+    session_start();
     $cod_jogador = $_SESSION['id_jogador'];
     
     $s_dimensoes = filter_input(INPUT_POST, 'dimensoes', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -31,13 +32,9 @@
 
         if ($stmt->rowCount() > 0) {
             header("Location: ../frontend/jogo.php");
-            exit(); 
-        }
-        else {
-             echo "Houve um erro: Nenhuma linha afetada.";
-             exit();
         }
 
+        exit(); 
     } catch (PDOException $e ) {
         http_response_code(500);
         echo json_encode(["error" => "Falha na conexão ou consulta: " . $e->getMessage()]);

@@ -46,8 +46,13 @@ function iniciarContagemRegressiva() {
         tempoTotalRegressivo--;
 
         if (tempoTotalRegressivo <= 0) {
-            alert('O tempo acabou!');
-            reiniciarJogo();
+            const tempoGastoNaDerrota = obterTempoInicialPorTamanho(estadoJogo.tamTabuleiro);
+            
+            salvarPartida('Derrota', tempoGastoNaDerrota)
+                .then(() => {
+                    alert('O tempo acabou!');
+                    reiniciarJogo();
+                });
         }
 
         cronometro.textContent = formatarTempo(tempoTotalRegressivo);
@@ -83,4 +88,22 @@ function pararContagemProgressiva() {
     clearInterval(intervaloProgressivo);
     intervaloProgressivo = null;
     tempoTotalProgressivo = 0;
+}
+
+function obterTempoGastoFinal() {
+    let tempoFinal = 0;
+    const modo = estadoJogo.modoDeJogoAtual; 
+
+    if (modo === 'Normal') {
+        tempoFinal = tempoTotalProgressivo; 
+        pararContagemProgressiva();
+    } 
+    
+    if (modo === 'Contra o Tempo') {
+        const tempoInicial = obterTempoInicialPorTamanho(estadoJogo.tamTabuleiro);
+        tempoFinal = tempoInicial - tempoTotalRegressivo;
+        pararContagemRegressiva();
+    } 
+
+    return tempoFinal;
 }
