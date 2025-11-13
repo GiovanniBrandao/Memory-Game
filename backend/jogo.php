@@ -1,4 +1,14 @@
 <?php 
+    session_start();
+    header('Content-Type: application/json'); // Importante para o JS entender a resposta
+
+    // Verifica se o usuário está logado
+    if (!isset($_SESSION['id_jogador'])) {
+        http_response_code(401);
+        echo json_encode(["error" => "Usuário não logado."]);
+        exit();
+    }
+
     $cod_jogador = $_SESSION['id_jogador'];
     
     $s_dimensoes = filter_input(INPUT_POST, 'dimensoes', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -22,25 +32,24 @@
         $stmt->bindParam(':cod_jogador', $cod_jogador, PDO::PARAM_INT);
         $stmt->bindParam(':dimensoes', $s_dimensoes, PDO::PARAM_STR);
         $stmt->bindParam(':modalidade', $s_modalidade, PDO::PARAM_STR);
-        $stmt->bindParam(':tempo_gasto', $s_tempo_gasto, $s_tempo_gasto === false ? PDO::PARAM_NULL : PDO::PARAM_INT);
-        $stmt->bindParam(':num_jogadas', $s_num_jogadas, $s_num_jogadas === false ? PDO::PARAM_NULL : PDO::PARAM_INT);
+        // Se for 0 ou false, salva 0, senão salva o valor
+        $stmt->bindParam(':tempo_gasto', $s_tempo_gasto, PDO::PARAM_INT);
+        $stmt->bindParam(':num_jogadas', $s_num_jogadas, PDO::PARAM_INT);
         $stmt->bindParam(':resultado', $s_resultado, PDO::PARAM_STR);
         $stmt->bindParam(':data_hora', $s_data_hora, PDO::PARAM_STR);
         
         $stmt->execute();
 
         if ($stmt->rowCount() > 0) {
-            header("Location: ../frontend/jogo.php");
-            exit(); 
-        }
-        else {
-             echo "Houve um erro: Nenhuma linha afetada.";
-             exit();
+            http_response_code(200);
+            echo json_encode(["success" => true, "message" => "Partida salva com sucesso!"]);
+        } else {
+             http_response_code(500);
+             echo json_encode(["error" => "Nenhuma linha afetada no banco."]);
         }
 
     } catch (PDOException $e ) {
         http_response_code(500);
         echo json_encode(["error" => "Falha na conexão ou consulta: " . $e->getMessage()]);
-        exit();
     }
 ?>

@@ -66,8 +66,13 @@ function reiniciarJogo() {
 }
 
 function ganhou() {
-    alert('Parabéns, você ganhou!');
-    reiniciarJogo();
+    pararCronometros(); 
+    
+
+    salvarPartida('vitoria').then(() => {
+        alert('Parabéns, você ganhou!');
+        reiniciarJogo();
+    });
 }
 
 function desabilitarCartas() {
@@ -163,6 +168,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 botaoIniciarDesistir.addEventListener('click', function () {
     if (estadoJogo.jogoIniciado) {
+        // Adicione esta linha:
+        salvarPartida('desistencia'); 
+        
         reiniciarJogo();
         alert('Você desistiu do jogo.');
     } else {
@@ -175,4 +183,60 @@ botaoIniciarDesistir.addEventListener('click', function () {
     }
 });
 
+async function salvarPartida(resultado) {
+    const formData = new FormData();
+
+    // Pega o tamanho do tabuleiro atual (ex: "4 x 4")
+    const dimensoes = document.getElementById('tabuleiro-valor').textContent || "4 x 4";
+    // Remove espaços para ficar no padrão do banco se necessário, ou envia como está
+    // formData.append('dimensoes', dimensoes.replace(/\s/g, '')); 
+    formData.append('dimensoes', dimensoes);
+
+    const modalidade = estadoJogo.modoDeJogoAtual === 'Normal' ? 'classico' : 'tempo';
+    formData.append('modalidade', modalidade);
+    
+    formData.append('num_jogadas', estadoJogo.jogadas);
+    formData.append('resultado', resultado); // 'vitoria', 'derrota' ou 'desistencia'
+
+    // Data e Hora atual formatada para MySQL (YYYY-MM-DD HH:MM:SS)
+    const agora = new Date();
+    // Ajuste fuso horário se necessário, aqui pega o local simplificado
+    const dataHora = agora.getFullYear() + '-' + 
+        String(agora.getMonth() + 1).padStart(2, '0') + '-' + 
+        String(agora.getDate()).padStart(2, '0') + ' ' + 
+        String(agora.getHours()).padStart(2, '0') + ':' + 
+        String(agora.getMinutes()).padStart(2, '0') + ':' + 
+        String(agora.getSeconds()).padStart(2, '0');
+    formData.append('data_hora', dataHora);
+
+    // CALCULAR O TEMPO GASTO
+    let tempoGasto = 0;
+    if (estadoJogo.modoDeJogoAtual === 'Normal') {
+        // No modo normal (progressivo), a variável tempoTotalProgressivo guarda o tempo
+        tempoGasto = tempoTotalProgressivo; 
+    } else {
+        // No modo contra o tempo (regressivo), precisamos ver quanto tempo passou
+        // tempo inicial - tempo restante
+        const tempoInicial = obterTempoInicialPorTamanho(estadoJogo.tamTabuleiro);
+        tempoGasto = tempoInicial - tempoTotalRegressivo;
+    }
+    formData.append('tempo_gasto', tempoGasto);
+
+    try {
+        const response = await fetch('../backend/jogo.php', {
+            method: 'POST',
+            body: formData
+        });
+
+        const data = await response.json();
+        if (data.success) {
+            console.log("Partida salva com sucesso!");
+        } else {
+            console.error("Erro ao salvar:", data.error);
+        }
+
+    } catch (error) {
+        console.error("Erro de conexão ao salvar partida:", error);
+    }
+}
 // Funções de funcionamento do jogo da memória adquiridas em https://www.youtube.com/watch?v=NGtx3EBlpNE
