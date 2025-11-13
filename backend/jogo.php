@@ -1,5 +1,6 @@
 <?php 
     session_start();
+<<<<<<< HEAD
     header('Content-Type: application/json'); // Importante para o JS entender a resposta
 
     // Verifica se o usuário está logado
@@ -9,6 +10,8 @@
         exit();
     }
 
+=======
+>>>>>>> 66e3e31d94f6a3e313b53f955a3dc1390d01bade
     $cod_jogador = $_SESSION['id_jogador'];
     
     $s_dimensoes = filter_input(INPUT_POST, 'dimensoes', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -41,13 +44,18 @@
         $stmt->execute();
 
         if ($stmt->rowCount() > 0) {
+<<<<<<< HEAD
             http_response_code(200);
             echo json_encode(["success" => true, "message" => "Partida salva com sucesso!"]);
         } else {
              http_response_code(500);
              echo json_encode(["error" => "Nenhuma linha afetada no banco."]);
+=======
+            header("Location: ../frontend/jogo.php");
+>>>>>>> 66e3e31d94f6a3e313b53f955a3dc1390d01bade
         }
 
+        exit(); 
     } catch (PDOException $e ) {
         http_response_code(500);
         echo json_encode(["error" => "Falha na conexão ou consulta: " . $e->getMessage()]);

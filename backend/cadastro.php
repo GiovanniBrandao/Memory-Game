@@ -64,9 +64,8 @@
         $result = $stmt->execute();
 
         if ($result) {
-            http_response_code(200);
+            http_response_code(200); 
             echo json_encode(["success" => true, "redirect" => "../frontend/login.php"]);
-            exit();
         } 
 
         exit();

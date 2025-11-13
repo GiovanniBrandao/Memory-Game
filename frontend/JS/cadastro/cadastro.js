@@ -28,9 +28,15 @@ async function fetchData() {
         }); // requisição
         
         if (response.ok) {
+<<<<<<< HEAD
         const data = await response.json(); // Lê o corpo da resposta como JSON
         alert("Cadastro realizado com sucesso!");
         window.location.href = data.redirect; // Usa a URL enviada no JSON
+=======
+            alert("Cadastro realizado com sucesso!");
+            const data = await response.json(); 
+            window.location.href = data.redirect;
+>>>>>>> 66e3e31d94f6a3e313b53f955a3dc1390d01bade
         } 
 
         // tratamento de erros

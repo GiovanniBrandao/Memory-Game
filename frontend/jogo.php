@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if (!isset($_SESSION['username'])) {
+    if (!isset($_SESSION['id_jogador'])) {
         header("Location: login.php");
         exit(); 
     }
@@ -74,5 +74,6 @@
         <script src="JS/jogo/modal-acoes.js"></script> 
         <script src="JS/jogo/cronometro.js"></script> 
         <script src="JS/jogo/tabuleiro.js"></script>
+        <script src="JS/jogo/salvarPartida.js"></script>
     </body>
 </html>

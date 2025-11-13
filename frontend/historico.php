@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if (!isset($_SESSION['username'])) {
+    if (!isset($_SESSION['id_jogador'])) {
         header("Location: login.php");
         exit(); 
     }
@@ -11,6 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="Resources/Images/videogame.svg">
     <link rel="stylesheet" href="CSS/main.css">
     <link rel="stylesheet" href="CSS/navbar.css">
     <link rel="stylesheet" href="CSS/matchHistory.css">
