@@ -66,15 +66,6 @@ function reiniciarJogo() {
 }
 
 function ganhou() {
-<<<<<<< HEAD
-    pararCronometros(); 
-    
-
-    salvarPartida('vitoria').then(() => {
-        alert('Parabéns, você ganhou!');
-        reiniciarJogo();
-    });
-=======
     const tempoGasto = obterTempoGastoFinal(); 
 
     salvarPartida('Vitoria', tempoGasto)
@@ -82,7 +73,6 @@ function ganhou() {
              alert('Parabéns, você ganhou!');
              reiniciarJogo();
         });
->>>>>>> 66e3e31d94f6a3e313b53f955a3dc1390d01bade
 }
 
 function desabilitarCartas() {
@@ -178,13 +168,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 botaoIniciarDesistir.addEventListener('click', function () {
     if (estadoJogo.jogoIniciado) {
-<<<<<<< HEAD
-        // Adicione esta linha:
-        salvarPartida('desistencia'); 
-        
-        reiniciarJogo();
-        alert('Você desistiu do jogo.');
-=======
         const tempoGasto = obterTempoGastoFinal(); 
         
         salvarPartida('Desistencia', tempoGasto)
@@ -192,7 +175,6 @@ botaoIniciarDesistir.addEventListener('click', function () {
                  alert('Você desistiu do jogo.');
                  reiniciarJogo();
             });
->>>>>>> 66e3e31d94f6a3e313b53f955a3dc1390d01bade
     } else {
         estadoJogo.jogoIniciado = true;
         this.textContent = 'Desistir do Jogo'; 
