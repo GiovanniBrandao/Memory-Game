@@ -4,7 +4,7 @@ const ENDPOINT_SALVAR_PARTIDA = '../backend/jogo.php';
 async function salvarPartida(resultado, tempoFinal) {
     const dimensoes = estadoJogo.tamTabuleiro || 'N/A';
     const modalidade = MODALIDADE_MAP[estadoJogo.modoDeJogoAtual] || 'Clássico';
-    const num_jogadas = estadoJogo.numJogadas || 0;
+    const num_jogadas = estadoJogo.jogadas || 0;
     const data_hora = formatarDataHoraAtual();
     
     const formData = new URLSearchParams();
