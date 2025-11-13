@@ -29,7 +29,8 @@ async function fetchData() {
         
         if (response.ok) {
             alert("Cadastro realizado com sucesso!");
-            window.location.href = response.headers.get('Location');
+            const data = await response.json(); 
+            window.location.href = data.redirect;
         } 
 
         // tratamento de erros

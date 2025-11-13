@@ -62,7 +62,8 @@
         $result = $stmt->execute();
 
         if ($result) {
-            header("Location: ../frontend/login.php"); 
+            http_response_code(200); 
+            echo json_encode(["success" => true, "redirect" => "../frontend/login.php"]);
         } 
 
         exit();

@@ -17,10 +17,10 @@ create table jogador (
 create table partida(
     id_partida int(11) not null auto_increment primary key,
     dimensoes varchar(10) not null,
-    modalidade enum('classico', 'tempo') not null,
+    modalidade enum('Normal', 'Contra o Tempo') not null,
     tempo_gasto int(11) not null,
     num_jogadas int(11) not null,
-    resultado enum('vitoria', 'derrota', 'desistencia') not null,
+    resultado enum('Vitória', 'Derrota', 'Desistência') not null,
     data_hora datetime not null,
     cod_jogador int(11) not null,
     constraint fk_cod_jogador
