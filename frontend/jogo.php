@@ -1,28 +1,26 @@
+<?php
+    session_start();
+    if (!isset($_SESSION['username'])) {
+        header("Location: login.php");
+        exit(); 
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="image/png" href="../Resources/Images/videogame.svg">
-        <link rel="stylesheet" href="../CSS/main.css">
-        <link rel="stylesheet" href="../CSS/helpers.css">
-        <link rel="stylesheet" href="../CSS/navbar.css">
-        <link rel="stylesheet" href="../CSS/game.css">
+        <link rel="icon" type="image/png" href="Resources/Images/videogame.svg">
+        <link rel="stylesheet" href="CSS/main.css">
+        <link rel="stylesheet" href="CSS/helpers.css">
+        <link rel="stylesheet" href="CSS/navbar.css">
+        <link rel="stylesheet" href="CSS/game.css">
         <title>Jogo da memória</title>
     </head>
 
     <body>
-        <header>
-            <nav aria-label="Navegação principal">
-                <ul>
-                    <li><a href="jogo.html">Jogo</a></li>
-                    <li><a href="historico.html">Histórico</a></li>
-                    <li><a href="ranque.html">Ranque global</a></li>
-                    <li><a href="perfil.html">Perfil</a></li>
-                    <li class="align-right"><a href="login.html">Sair</a></li>
-                </ul>
-            </nav>
-        </header>
+        <?php include "navbar.php"; ?>
 
         <main class="container">
             <section class="cabecalho">
@@ -71,10 +69,10 @@
         <p>© 2025 Universidade Estadual de Campinas - Campus Limeira</p>
     </footer>
 
-        <script src="../JS/jogo/modal.js"></script>
-        <script src="../JS/jogo/jogo.js"></script> 
-        <script src="../JS/jogo/modal-acoes.js"></script> 
-        <script src="../JS/jogo/cronometro.js"></script> 
-        <script src="../JS/jogo/tabuleiro.js"></script>
+        <script src="JS/jogo/modal.js"></script>
+        <script src="JS/jogo/jogo.js"></script> 
+        <script src="JS/jogo/modal-acoes.js"></script> 
+        <script src="JS/jogo/cronometro.js"></script> 
+        <script src="JS/jogo/tabuleiro.js"></script>
     </body>
 </html>

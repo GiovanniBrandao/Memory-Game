@@ -54,7 +54,7 @@ function loadProfileData() {
         $("#phone").value = formatPhone(user.telefone);
     } else {
         alert("Usuário não encontrado. Por favor faça login novamente");
-        window.location.href = "./login.html";
+        window.location.href = "./login.php";
     }
 }
 
