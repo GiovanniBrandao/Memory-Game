@@ -1,12 +1,21 @@
 const $ = (element) => document.querySelector(element);
 
-// Funções de validação e formatação (mantidas)
 function validateEmail(email) {
-    const commonTlds = ["com", "org", "net", "edu", "gov", "br", "io", "co", "info", "biz"];
+    const commonTlds = [
+        "com", "org", "net", "edu", "gov", "mil", "int", "br", "io", "co", 
+        "info", "biz", "name", "mobi", "app", "dev", "xyz", "club", "online", 
+        "store", "tech", "site", "me", "tv", "us", "uk", "ca", "de", "jp", 
+        "fr", "au", "ru", "ch", "it", "nl", "se", "no", "es", "pt"
+    ];
+
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!emailRegex.test(String(email).toLowerCase())) return false;
+    if (!emailRegex.test(String(email).toLowerCase())) {
+        return false;
+    }
+
     const parts = email.split('.');
     const tld = parts[parts.length - 1].toLowerCase();
+    
     return commonTlds.includes(tld);
 }
 
@@ -34,26 +43,16 @@ function formatCPF(cpf) {
     return value;
 }
 
-// NOVA FUNÇÃO DE CARREGAMENTO (Substitui a antiga que usava localStorage)
 async function loadProfileData() {
     try {
-        const response = await fetch('../backend/get_perfil.php');
-        
-        // Se não estiver logado, o PHP retorna 401
-        if (response.status === 401) {
-            alert("Sessão expirada. Faça login novamente.");
-            window.location.href = "login.php";
-            return;
+        const response = await fetch('../backend/carregar_perfil.php');
+
+        if (!response.ok) {
+            throw new Error('Não foi possível carregar os dados.');
         }
 
         const user = await response.json();
 
-        if (user.error) {
-            console.error("Erro:", user.error);
-            return;
-        }
-
-        // Preenche os campos com dados do BANCO DE DADOS
         $("#name").value = user.nome || "";
         $("#username").value = user.username || "";
         $("#birthdate").value = user.data_nasc || "";
@@ -62,21 +61,24 @@ async function loadProfileData() {
         $("#phone").value = formatPhone(user.telefone || "");
 
     } catch (error) {
-        console.error("Erro ao conectar com o servidor:", error);
+        console.error(error);
+        alert("Sessão expirada ou erro ao carregar dados. Por favor faça login novamente.");
+        window.location.href = "./login.php";
     }
 }
 
-// FUNÇÃO DE SALVAR (Também atualizada para usar fetch)
 async function saveProfileChanges() {
     const name = $("#name").value;
     const email = $("#email").value;
     const phone = $("#phone").value;
+    
     const currentPassword = $("#current-password").value;
     const newPassword = $("#new-password").value;
     const confirmPassword = $("#confirm-password").value;
 
-    if (name.length === 0 || email.length === 0 || phone.length === 0) {
-        alert("Por favor preencha todas as informações pessoais para salvar.");
+    // Validações Frontend
+    if (name.length === 0 || email.length === 0) {
+        alert("Nome e E-mail são obrigatórios.");
         return;
     }
 
@@ -85,67 +87,65 @@ async function saveProfileChanges() {
         return;
     }
 
-    const cleanPhone = phone.replace(/\D/g, "");
-    if (cleanPhone.length < 10 || cleanPhone.length > 11) {
-        alert("Formato de telefone inválido.");
-        return;
-    }
-
-    const formData = new FormData();
-    formData.append('nome', name);
-    formData.append('email', email);
-    formData.append('telefone', cleanPhone);
-
     if (newPassword.length > 0) {
-        if (currentPassword.length === 0 || confirmPassword.length === 0) {
-            alert("Para mudar a senha, preencha todos os campos de senha.");
+        if (currentPassword.length === 0) {
+            alert("Por favor, digite sua senha atual para realizar a troca.");
             return;
         }
         if (newPassword !== confirmPassword) {
-            alert("A nova senha e a confirmação não são iguais.");
+            alert("A nova senha e a confirmação não coincidem.");
             return;
         }
+    }
+
+    const formData = new URLSearchParams();
+    formData.append('nome', name);
+    formData.append('email', email);
+    formData.append('telefone', phone.replace(/\D/g, "")); // Envia apenas números
+    
+    if (newPassword.length > 0) {
         formData.append('senha_atual', currentPassword);
         formData.append('nova_senha', newPassword);
     }
 
     try {
-        // Você precisa ter criado o arquivo atualizar_perfil.php (passo anterior)
         const response = await fetch('../backend/atualizar_perfil.php', {
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
             body: formData
         });
-        
-        const result = await response.json();
 
-        if (result.success) {
-            alert("Perfil atualizado com sucesso!");
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+            alert(data.message);
+
             $("#current-password").value = "";
             $("#new-password").value = "";
             $("#confirm-password").value = "";
         } else {
-            alert("Erro: " + (result.error || "Erro desconhecido"));
+            alert(data.error || "Ocorreu um erro ao salvar.");
         }
+
     } catch (error) {
-        console.error("Erro:", error);
-        alert("Erro de conexão ao salvar.");
+        console.error(error);
+        alert("Erro de conexão com o servidor.");
     }
 }
 
 function initializeApp() {
-    loadProfileData();
+    loadProfileData(); 
 
     $("#phone").addEventListener("input", (e) => {
         e.target.value = formatPhone(e.target.value);
     });
     
-    const btnSalvar = $(".botao-salvar");
-    if(btnSalvar) {
-        btnSalvar.addEventListener("click", (ev) => {
-            ev.preventDefault();
-            saveProfileChanges();
-        });
-    }
+    $(".botao-salvar").addEventListener("click", (ev) => {
+        ev.preventDefault();
+        saveProfileChanges();
+    });
 }
 
 document.addEventListener('DOMContentLoaded', initializeApp);

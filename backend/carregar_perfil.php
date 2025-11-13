@@ -2,33 +2,36 @@
 session_start();
 header('Content-Type: application/json');
 
-// Verifica se está logado
+// Verifica se o utilizador está logado
 if (!isset($_SESSION['id_jogador'])) {
     http_response_code(401);
-    echo json_encode(["error" => "Não autorizado"]);
+    echo json_encode(["error" => "Utilizador não autenticado"]);
     exit();
 }
+
+$id_jogador = $_SESSION['id_jogador'];
 
 try {
     $conn = new PDO("mysql:host=localhost;dbname=Memoria", "root", "");
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Busca os dados do jogador logado
+    // Seleciona os dados necessários para o perfil
     $sql = "SELECT nome, username, data_nasc, cpf, email, telefone FROM jogador WHERE id_jogador = :id";
     $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':id', $_SESSION['id_jogador']);
+    $stmt->bindParam(':id', $id_jogador, PDO::PARAM_INT);
     $stmt->execute();
 
     $dados = $stmt->fetch(PDO::FETCH_ASSOC);
-    
+
     if ($dados) {
         echo json_encode($dados);
     } else {
-        echo json_encode(["error" => "Usuário não encontrado no banco."]);
+        http_response_code(404);
+        echo json_encode(["error" => "Perfil não encontrado"]);
     }
 
 } catch (PDOException $e) {
     http_response_code(500);
-    echo json_encode(["error" => "Erro no servidor"]);
+    echo json_encode(["error" => "Erro no servidor: " . $e->getMessage()]);
 }
 ?>
