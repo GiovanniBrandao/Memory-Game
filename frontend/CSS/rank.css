@@ -6,6 +6,11 @@ section {
   margin-bottom: 2rem;
 }
 
+.container-rank {
+  align-items: center;
+  display: flex;
+}
+
 .botoes-ranking {
   display: flex;
   gap: 15px; 

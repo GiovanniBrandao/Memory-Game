@@ -29,7 +29,7 @@
                         <th>Jogador</th>
                         <th>Dimensão</th>
                         <th>Modalidade</th>
-                        <th>Tempo</th>
+                        <th>Tempo (s)</th>
                         <th>Jogadas</th>
                         <th>Resultado</th>
                         <th>Data</th>

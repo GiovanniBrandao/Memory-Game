@@ -15,6 +15,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    function formatarTempo(tempoSegundos) {
+        const minutos = Math.floor(tempoSegundos / 60);
+        const segundos = tempoSegundos % 60;
+        return `${String(minutos).padStart(2, '0')}:${String(segundos).padStart(2, '0')}`;
+    }
+
     function renderizarHistorico(historico) {
         tabelaBody.innerHTML = '';
 
@@ -39,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <td data-label="Jogador">${partida.username}</td>
                 <td data-label="Dimensão">${partida.dimensoes}</td>
                 <td data-label="Modalidade">${partida.modalidade}</td>
-                <td data-label="Tempo">${partida.tempo_gasto}</td> 
+                <td data-label="Tempo">${formatarTempo(partida.tempo_gasto)}</td> 
                 <td data-label="Jogadas">${partida.num_jogadas}</td>
                 <td data-label="Resultado" class="${resultadoLower}">${partida.resultado}</td>
                 <td data-label="Data">${dataFormatada}</td>

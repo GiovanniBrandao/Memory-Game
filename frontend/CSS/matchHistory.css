@@ -29,6 +29,11 @@ h1 {
     font-weight: bold;
 }
 
+.desistência {
+    color: #404140;
+    font-weight: bold;
+}
+
 @media screen and (max-width: 768px) {
     .container-historico {
         padding: 0 1rem;

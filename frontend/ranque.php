@@ -22,8 +22,8 @@
     
     <?php include "navbar.php"; ?>
 
-    <main class="centralizar" style="flex-direction: column;"> 
-
+    <main class="container-rank"> 
+        <h1>Ranking Global</h1>
         <div id="botoes-ranking" class="botoes-ranking">
             <button class="botao-principal" data-tamanho="2 x 2">2 x 2</button>
             <button class="botao-principal" data-tamanho="4 x 4">4 x 4</button>
