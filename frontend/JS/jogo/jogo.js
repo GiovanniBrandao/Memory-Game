@@ -68,7 +68,7 @@ function reiniciarJogo() {
 function ganhou() {
     const tempoGasto = obterTempoGastoFinal(); 
 
-    salvarPartida('Vitoria', tempoGasto)
+    salvarPartida('Vitória', tempoGasto)
         .then(() => {
              alert('Parabéns, você ganhou!');
              reiniciarJogo();
@@ -170,7 +170,7 @@ botaoIniciarDesistir.addEventListener('click', function () {
     if (estadoJogo.jogoIniciado) {
         const tempoGasto = obterTempoGastoFinal(); 
         
-        salvarPartida('Desistencia', tempoGasto)
+        salvarPartida('Desistência', tempoGasto)
             .then(() => {
                  alert('Você desistiu do jogo.');
                  reiniciarJogo();

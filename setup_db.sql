@@ -14,16 +14,16 @@ create table jogador (
     data_cadastro timestamp default current_timestamp null 
 );
 
-create table partida(
-    id_partida int(11) not null auto_increment primary key,
-    dimensoes varchar(10) not null,
-    modalidade enum('Normal', 'Contra o Tempo') not null,
-    tempo_gasto int(11) not null,
-    num_jogadas int(11) not null,
-    resultado enum('Vitória', 'Derrota', 'Desistência') not null,
-    data_hora datetime not null,
-    cod_jogador int(11) not null,
-    constraint fk_cod_jogador
-    foreign key (cod_jogador) references jogador (id_jogador)
-    on delete cascade
+CREATE TABLE partida (
+    id_partida INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    dimensoes ENUM('2 x 2', '4 x 4', '6 x 6', '8 x 8') NOT NULL,
+    modalidade ENUM('Normal', 'Contra o Tempo') NOT NULL, 
+    tempo_gasto INT(11) NOT NULL,
+    num_jogadas INT(11) NOT NULL,
+    resultado ENUM('Vitória', 'Derrota', 'Desistência') NOT NULL,
+    data_hora DATETIME NOT NULL,
+    cod_jogador INT(11) NOT NULL,
+    CONSTRAINT fk_cod_jogador
+    FOREIGN KEY (cod_jogador) REFERENCES jogador (id_jogador)
+    ON DELETE CASCADE
 );
