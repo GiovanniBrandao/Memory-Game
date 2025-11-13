@@ -63,9 +63,7 @@
 
         if ($result) {
             header("Location: ../frontend/login.php"); 
-        } else {
-            echo "Houve um erro ao inserir os dados.";
-        }
+        } 
 
         exit();
     } catch (PDOException $e ) {

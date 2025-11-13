@@ -1,14 +1,7 @@
-// JS: login.js
 const $ = (elemento) => document.querySelector(elemento);
-
-const loginButton = $(".entrar-button");
-const form = loginButton.closest('form'); 
-
 const ENDPOINT_LOGIN = '../backend/login.php'; 
 
-form.addEventListener("submit", async (ev) => {
-    ev.preventDefault();
-
+async function fetchData() {
     const usuarioLimpo = $("#usuario").value.trim();
     const senhaInput = $("#senha").value;
     
@@ -30,23 +23,30 @@ form.addEventListener("submit", async (ev) => {
             body: formData 
         });
 
-        const data = await response.json(); // Tenta ler o JSON da resposta
-
         if (response.ok) {
-            // Login de SUCESSO (Status 200 OK)
-            if (data.success && data.redirect) {
-                window.location.href = data.redirect; // Redireciona para o jogo.php
-            } else {
-                alert("Login falhou devido a uma resposta inesperada do servidor (Sucesso sem redirecionamento).");
-            }
-        } else {
-            // Login de FALHA (Status 400, 401, 500 etc.)
-            const errorMessage = data.error || `Erro inesperado: ${response.status}`;
-            alert(`Falha no Login: ${errorMessage}`);
-        }
+            const data = await response.json(); 
+            window.location.href = data.redirect;
+        } 
 
-    } catch (error) {
-        console.error('Erro de rede ou na requisição:', error);
-        alert("Não foi possível conectar ao servidor. Verifique sua conexão ou a resposta inesperada.");
+        // tratamento de erros
+        response.json().then(data => {
+            if (data.error) {
+                alert(data.error);
+            }
+        }).catch(error => {
+            console.error("Erro ao processar a resposta: ", error);
+        });
+
+
+    } catch {
+        alert("Não foi possível conectar ao servidor.");
     }
-});
+}
+
+const loginForm = $("form"); 
+if (loginForm) {
+    loginForm.addEventListener("submit", (ev) => {
+        ev.preventDefault();
+        fetchData(); 
+    });
+}

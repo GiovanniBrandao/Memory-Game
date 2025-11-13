@@ -27,21 +27,21 @@ async function fetchData() {
             body: formData 
         }); // requisição
         
-        if (response.ok || response.status === 302 || response.status === 303) {
-            const locationHeader = response.headers.get('Location');
-            
+        if (response.ok) {
             alert("Cadastro realizado com sucesso!");
-            
-            if (locationHeader) {
-                window.location.href = locationHeader; 
-            } else { // caso o php não retorne o header
-                 window.location.href = "../frontend/login.php"; 
-            }
-        } else {
-            alert("Erro no cadastro. Verifique se o nome de usuário ou e-mail já estão em uso.");
-        }
+            window.location.href = response.headers.get('Location');
+        } 
 
-    } catch (error) {
+        // tratamento de erros
+        response.json().then(data => {
+            if (data.error) {
+                alert(data.error);
+            }
+        }).catch(error => {
+            console.error("Erro ao processar a resposta: ", error);
+        });
+
+    } catch {
         alert("Não foi possível conectar ao servidor.");
     }
 }

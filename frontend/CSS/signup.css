@@ -6,6 +6,11 @@
     width: 100%;
 }
 
+.campo-obrigatorio {
+    color: #ff0000;
+    margin-left: 2px;
+}
+
 .formulario form {
     display: flex;
     flex-direction: column;

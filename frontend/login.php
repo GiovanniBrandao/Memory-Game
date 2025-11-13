@@ -18,9 +18,11 @@
             <div class="formulario">
                 <form>
                     <label for="usuario">Usuário</label>
-                    <input type="text" name="usuario" id="usuario" placeholder="Nome de usuário" required>
+                    <input type="text" name="usuario" id="usuario" placeholder="Nome de usuário" required autocomplete="username">
+
                     <label for="senha">Senha</label>
-                    <input type="password" name="senha" id="senha" placeholder="Digite a senha" required>
+                    <input type="password" name="senha" id="senha" placeholder="Digite a senha" required autocomplete="current-password">
+                    
                     <button type="submit" class="botao-principal entrar-button">Entrar</button>
                 </form>
             </div>
@@ -33,5 +35,4 @@
     </footer>
     <script src="JS/login.js"></script>
 </body>
-
 </html>

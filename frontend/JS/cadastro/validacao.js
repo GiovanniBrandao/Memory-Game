@@ -52,7 +52,7 @@ function validateNewUser() {
     const nascimento = $("#nascimento").value;
     const cpf = $("#cpf").value;
     const telefone = $("#telefone").value;
-    const email = $("#mail").value.trim();
+    const email = $("#email").value.trim();
     const senha = $("#senha").value;
     const confirmaSenha = $("#senha-confirm").value;
 

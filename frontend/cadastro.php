@@ -17,29 +17,29 @@
             <h1>CADASTRO</h1>
             <div class="formulario">
                 <form>
-                    <label for="nome">Nome Completo</label>
-                    <input type="text" name="nome" id="nome" placeholder="Digite seu nome" required>
+                    <label for="nome">Nome Completo<span class="campo-obrigatorio">*</span></label>
+                    <input type="text" name="nome" id="nome" placeholder="Digite seu nome" required **autocomplete="name"**>
 
-                    <label for="usuario">Nome de usuário</label>
+                    <label for="usuario">Nome de Usuário<span class="campo-obrigatorio">*</span></label>
                     <input type="text" name="usuario" id="usuario" placeholder="Crie um nome de usuário" required>
                     
                     <label for="nascimento">Data de Nascimento</label>
                     <input type="date" name="nascimento" id="nascimento">
 
-                    <label for="cpf">CPF</label>
+                    <label for="cpf">CPF<span class="campo-obrigatorio">*</span></label>
                     <input type="text" name="cpf" id="cpf" placeholder="Digite seu CPF" minlength="14" maxlength="14" required>
 
                     <label for="telefone">Telefone</label>
-                    <input type="text" name="telefone" id="telefone" placeholder="(xx) xxxxx-xxxx" minlength="14" maxlength="15">
+                    <input type="text" name="telefone" id="telefone" placeholder="(xx) xxxxx-xxxx" minlength="14" maxlength="15" **autocomplete="tel"**>
 
-                    <label for="mail">E-mail</label>
-                    <input type="email" name="mail" id="mail" placeholder="Digite seu e-mail" required>
+                    <label for="email">E-mail<span class="campo-obrigatorio">*</span></label>
+                    <input type="email" name="email" id="email" placeholder="Digite seu e-mail" required **autocomplete="email"**>
 
-                    <label for="senha">Senha</label>
-                    <input type="password" name="senha" id="senha" placeholder="Digite uma senha" required>
+                    <label for="senha">Senha<span class="campo-obrigatorio">*</span></label>
+                    <input type="password" name="senha" id="senha" placeholder="Digite uma senha" required **autocomplete="new-password"**>
 
-                    <label for="senha-confirm">Confirmação de senha</label>
-                    <input type="password" name="senha-confirm" id="senha-confirm" placeholder="Digite a senha novamente" required>
+                    <label for="senha-confirm">Confirmação de Senha<span class="campo-obrigatorio">*</span></label>
+                    <input type="password" name="senha-confirm" id="senha-confirm" placeholder="Digite a senha novamente" required **autocomplete="new-password"**>
 
                     <button type="submit" class="botao-principal cadastro-button">Cadastrar</button>
                 </form>
@@ -55,5 +55,4 @@
     <script src="JS/cadastro/mascaras.js"></script>
     <script src="JS/cadastro/validacao.js"></script>
 </body>
-
 </html>
