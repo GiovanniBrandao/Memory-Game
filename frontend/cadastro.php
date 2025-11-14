@@ -18,7 +18,7 @@
             <div class="formulario">
                 <form>
                     <label for="nome">Nome Completo<span class="campo-obrigatorio">*</span></label>
-                    <input type="text" name="nome" id="nome" placeholder="Digite seu nome" required **autocomplete="name"**>
+                    <input type="text" name="nome" id="nome" placeholder="Digite seu nome" required>
 
                     <label for="usuario">Nome de Usuário<span class="campo-obrigatorio">*</span></label>
                     <input type="text" name="usuario" id="usuario" placeholder="Crie um nome de usuário" required>
@@ -30,16 +30,16 @@
                     <input type="text" name="cpf" id="cpf" placeholder="Digite seu CPF" minlength="14" maxlength="14" required>
 
                     <label for="telefone">Telefone</label>
-                    <input type="text" name="telefone" id="telefone" placeholder="(xx) xxxxx-xxxx" minlength="14" maxlength="15" **autocomplete="tel"**>
+                    <input type="text" name="telefone" id="telefone" placeholder="(xx) xxxxx-xxxx" minlength="14" maxlength="15">
 
                     <label for="email">E-mail<span class="campo-obrigatorio">*</span></label>
-                    <input type="email" name="email" id="email" placeholder="Digite seu e-mail" required **autocomplete="email"**>
+                    <input type="email" name="email" id="email" placeholder="Digite seu e-mail" required>
 
                     <label for="senha">Senha<span class="campo-obrigatorio">*</span></label>
-                    <input type="password" name="senha" id="senha" placeholder="Digite uma senha" required **autocomplete="new-password"**>
+                    <input type="password" name="senha" id="senha" placeholder="Digite uma senha" required>
 
                     <label for="senha-confirm">Confirmação de Senha<span class="campo-obrigatorio">*</span></label>
-                    <input type="password" name="senha-confirm" id="senha-confirm" placeholder="Digite a senha novamente" required **autocomplete="new-password"**>
+                    <input type="password" name="senha-confirm" id="senha-confirm" placeholder="Digite a senha novamente" required>
 
                     <button type="submit" class="botao-principal cadastro-button">Cadastrar</button>
                 </form>

@@ -23,7 +23,6 @@
         $stmt->bindParam(':cod_jogador', $cod_jogador, PDO::PARAM_INT);
         $stmt->bindParam(':dimensoes', $s_dimensoes, PDO::PARAM_STR);
         $stmt->bindParam(':modalidade', $s_modalidade, PDO::PARAM_STR);
-        // Se for 0 ou false, salva 0, senão salva o valor
         $stmt->bindParam(':tempo_gasto', $s_tempo_gasto, PDO::PARAM_INT);
         $stmt->bindParam(':num_jogadas', $s_num_jogadas, PDO::PARAM_INT);
         $stmt->bindParam(':resultado', $s_resultado, PDO::PARAM_STR);
