@@ -184,4 +184,5 @@ botaoIniciarDesistir.addEventListener('click', function () {
         }
     }
 });
+
 // Funções de funcionamento do jogo da memória adquiridas em https://www.youtube.com/watch?v=NGtx3EBlpNE
