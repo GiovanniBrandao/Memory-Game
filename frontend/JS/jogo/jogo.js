@@ -155,8 +155,9 @@ function esconderCartas() {
         cartas.forEach(carta => {
             if (!carta.classList.contains('acertada')) {
                 carta.classList.remove('virada');
+                carta.addEventListener('click', virarCarta); 
+
             }
-            carta.addEventListener('click', virarCarta); 
         });
     }
     resetarTabuleiro(); 
