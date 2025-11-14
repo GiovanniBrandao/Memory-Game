@@ -8,7 +8,7 @@
         $conn = new PDO("mysql:host=localhost;dbname=Memoria", "root", "");
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = "SELECT username, dimensoes, modalidade, tempo_gasto, num_jogadas, resultado, data_hora 
+        $sql = "SELECT nome, dimensoes, modalidade, tempo_gasto, num_jogadas, resultado, data_hora 
                 FROM partida INNER JOIN jogador ON cod_jogador = id_jogador 
                 WHERE username = :username
                 ORDER BY data_hora DESC";

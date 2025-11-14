@@ -74,7 +74,6 @@ function iniciarContagemProgressiva() {
 // PARAR CRONOMETROS
 
 function pararCronometros() {
-    configuracoesContronometroRegressivo();
     pararContagemProgressiva();
     pararContagemRegressiva();
 }
@@ -87,7 +86,7 @@ function pararContagemRegressiva() {
 function pararContagemProgressiva() {
     clearInterval(intervaloProgressivo);
     intervaloProgressivo = null;
-    // tempoTotalProgressivo = 0;
+    tempoTotalProgressivo = 0;
 }
 
 function obterTempoGastoFinal() {
@@ -96,13 +95,11 @@ function obterTempoGastoFinal() {
 
     if (modo === 'Normal') {
         tempoFinal = tempoTotalProgressivo; 
-        pararContagemProgressiva();
     } 
     
     if (modo === 'Contra o Tempo') {
         const tempoInicial = obterTempoInicialPorTamanho(estadoJogo.tamTabuleiro);
         tempoFinal = tempoInicial - tempoTotalRegressivo;
-        pararContagemRegressiva();
     } 
 
     return tempoFinal;

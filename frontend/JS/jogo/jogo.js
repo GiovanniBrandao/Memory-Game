@@ -156,7 +156,6 @@ function esconderCartas() {
             if (!carta.classList.contains('acertada')) {
                 carta.classList.remove('virada');
                 carta.addEventListener('click', virarCarta); 
-
             }
         });
     }
@@ -185,4 +184,5 @@ botaoIniciarDesistir.addEventListener('click', function () {
         }
     }
 });
+
 // Funções de funcionamento do jogo da memória adquiridas em https://www.youtube.com/watch?v=NGtx3EBlpNE

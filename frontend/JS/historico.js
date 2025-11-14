@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const dataFormatada = formatarDataHora(partida.data_hora);
 
             linha.innerHTML = `
-                <td data-label="Jogador">${partida.username}</td>
+                <td data-label="Jogador">${partida.nome}</td>
                 <td data-label="Dimensão">${partida.dimensoes}</td>
                 <td data-label="Modalidade">${partida.modalidade}</td>
                 <td data-label="Tempo">${formatarTempo(partida.tempo_gasto)}</td> 
