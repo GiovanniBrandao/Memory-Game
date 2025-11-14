@@ -39,34 +39,15 @@ async function salvarPartida(resultado, tempoFinal) {
             body: formData 
         });
 
-        // Verifica se a resposta HTTP é bem-sucedida (status 200-299)
-        if (!response.ok) {
-            throw new Error(`Erro de rede: Status ${response.status}`);
-        }
-
-        const data = await response.json();
-
-        if (data.error) {
-            console.error(data.error);
-        }
+        response.json().then(data => {
+            if (data.error) {
+                console.error(data.error);
+            }
+        }).catch(error => {
+            console.error("Erro ao processar a resposta: ", error);
+        });
 
     } catch (error) {
-        if (error.name === 'SyntaxError') {
-            console.error("Erro ao processar a resposta: Resposta não é JSON válida.", error);
-        } else if (error.message.includes("Erro de rede")) {
-            console.error(error.message);
-        } else {
-            console.error("Não foi possível conectar ao servidor ou erro desconhecido:", error);
-        }
+        console.error("Não foi possível conectar ao servidor.");
     }
-}
-
-function formatarDataHoraAtual() {
-    const agora = new Date();
-    const pad = (num) => String(num).padStart(2, '0');
-    
-    const data = `${agora.getFullYear()}-${pad(agora.getMonth() + 1)}-${pad(agora.getDate())}`;
-    const hora = `${pad(agora.getHours())}:${pad(agora.getMinutes())}:${pad(agora.getSeconds())}`;
-    
-    return `${data} ${hora}`;
 }

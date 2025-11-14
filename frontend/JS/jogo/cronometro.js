@@ -29,6 +29,10 @@ function obterTempoInicialPorTamanho(tamanho) {
 
 // CRONOMETRO - CONTAGEM REGRESSIVA
 
+function configuracoesContronometroRegressivo() {
+    tempoTotalRegressivo = obterTempoInicialPorTamanho(estadoJogo.tamTabuleiro);
+}
+
 function iniciarContagemRegressiva() {
     if (intervaloRegressivo) {
         clearInterval(intervaloRegressivo);
@@ -70,7 +74,6 @@ function iniciarContagemProgressiva() {
 // PARAR CRONOMETROS
 
 function pararCronometros() {
-    configuracoesContronometroRegressivo();
     pararContagemProgressiva();
     pararContagemRegressiva();
 }
@@ -84,12 +87,6 @@ function pararContagemProgressiva() {
     clearInterval(intervaloProgressivo);
     intervaloProgressivo = null;
     tempoTotalProgressivo = 0;
-}
-
-// TEMPO GASTO
-
-function configuracoesContronometroRegressivo() {
-    tempoTotalRegressivo = obterTempoInicialPorTamanho(estadoJogo.tamTabuleiro);
 }
 
 function obterTempoGastoFinal() {
